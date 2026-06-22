@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
 import type {
   Service,
   Industry,
@@ -246,32 +247,36 @@ export function TestimonialsPreview({ testimonials }: { testimonials: Testimonia
 
 export function FinalCTA({ content }: { content: SiteContent["cta"] }) {
   return (
-    <section className="py-20">
+    <section className="relative overflow-hidden py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-3xl bg-gradient-to-br from-primary to-blue-700 px-8 py-16 text-center text-white sm:px-16"
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-blue-700 px-8 py-16 text-center text-white sm:px-16"
         >
-          <h2 className="text-3xl font-bold sm:text-4xl">{content.title}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-blue-100">{content.subtitle}</p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              href="/free-audit"
-              size="lg"
-              className="bg-white text-primary hover:bg-blue-50"
-            >
-              {content.primaryCta}
-            </Button>
-            <Button
-              href="/contact"
-              variant="outline"
-              size="lg"
-              className="border-white/30 text-white hover:bg-white/10"
-            >
-              {content.secondaryCta}
-            </Button>
+          <BackgroundEffects variant="subtle" />
+          <div className="noise-overlay absolute inset-0 opacity-20" aria-hidden="true" />
+          <div className="relative">
+            <h2 className="text-3xl font-bold sm:text-4xl">{content.title}</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-blue-100">{content.subtitle}</p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button
+                href="/free-audit"
+                size="lg"
+                className="bg-white text-primary hover:bg-blue-50"
+              >
+                {content.primaryCta}
+              </Button>
+              <Button
+                href="/contact"
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10"
+              >
+                {content.secondaryCta}
+              </Button>
+            </div>
           </div>
         </motion.div>
       </Container>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
 
 const clientLogos = [
   "Bright Smile Dental",
@@ -15,8 +16,9 @@ const clientLogos = [
 
 export function ClientLogosSection() {
   return (
-    <section className="border-b border-border py-12">
-      <Container>
+    <section className="relative overflow-hidden border-b border-border py-12">
+      <BackgroundEffects variant="subtle" />
+      <Container className="relative">
         <p className="mb-8 text-center text-sm font-medium uppercase tracking-wider text-muted">
           Trusted by local businesses
         </p>
@@ -28,7 +30,7 @@ export function ClientLogosSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="flex h-16 items-center justify-center rounded-xl border border-border bg-secondary/50 px-4 text-center text-xs font-semibold text-muted"
+              className="glass flex h-16 items-center justify-center rounded-xl px-4 text-center text-xs font-semibold text-muted"
             >
               {logo}
             </motion.div>
