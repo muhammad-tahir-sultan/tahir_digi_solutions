@@ -6,7 +6,10 @@ import { ArrowRight, AlertCircle, Lightbulb, TrendingUp } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { BrowserMockup } from "@/components/mockups/DeviceMockups";
+import {
+  CaseStudyBeforePreview,
+  CaseStudyAfterPreview,
+} from "@/components/mockups/CaseStudyWebsitePreviews";
 import {
   IndustryIllustration,
   getIndustryKey,
@@ -47,11 +50,27 @@ export function CaseStudiesGridSection({ caseStudies }: { caseStudies: CaseStudy
                       <h2 className="mt-3 text-xl font-bold text-white">{study.title}</h2>
                     </div>
 
-                    <div className="relative -mt-4 mx-4 overflow-hidden rounded-xl border border-border shadow-lg transition-transform duration-300 group-hover:scale-[1.02]">
-                      <BrowserMockup industry={industryKey} title={study.title} />
+                    {/* Mini before → after preview */}
+                    <div className="relative -mt-4 mx-4 grid grid-cols-2 gap-2">
+                      <div className="overflow-hidden rounded-lg border border-red-500/20 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+                        <div className="bg-red-500/10 px-2 py-0.5 text-[8px] font-bold uppercase text-red-500">
+                          Before
+                        </div>
+                        <div className="aspect-[4/3] min-h-[100px]">
+                          <CaseStudyBeforePreview slug={study.slug} />
+                        </div>
+                      </div>
+                      <div className="overflow-hidden rounded-lg border border-emerald-500/20 shadow-md transition-transform duration-300 group-hover:scale-[1.02]">
+                        <div className="bg-emerald-500/10 px-2 py-0.5 text-[8px] font-bold uppercase text-emerald-600">
+                          After
+                        </div>
+                        <div className="aspect-[4/3] min-h-[100px]">
+                          <CaseStudyAfterPreview slug={study.slug} />
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="flex flex-1 flex-col p-6 pt-8">
+                    <div className="flex flex-1 flex-col p-6 pt-5">
                       <p className="text-sm text-muted line-clamp-3">{study.businessOverview}</p>
 
                       <div className="mt-4 flex flex-wrap gap-3">

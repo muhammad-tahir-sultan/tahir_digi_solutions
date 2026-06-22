@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
+import {
+  CaseStudyBeforePreview,
+  CaseStudyAfterPreview,
+} from "@/components/mockups/CaseStudyWebsitePreviews";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
@@ -154,8 +158,9 @@ export function CaseStudyPreview({ caseStudies }: { caseStudies: CaseStudy[] }) 
   if (!study) return null;
 
   return (
-    <section className="border-y border-border bg-secondary/30 py-20">
-      <Container>
+    <section className="relative overflow-hidden border-y border-border bg-secondary/30 py-20">
+      <BackgroundEffects variant="subtle" />
+      <Container className="relative">
         <SectionHeading
           badge="Case Study"
           title="How We Approach Growth Projects"
@@ -165,11 +170,28 @@ export function CaseStudyPreview({ caseStudies }: { caseStudies: CaseStudy[] }) 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="mx-auto mt-10 max-w-5xl"
         >
-          <Card className="mx-auto max-w-4xl">
+          <div className="glass-strong overflow-hidden rounded-2xl p-6 sm:p-8">
             <Badge>{study.industry}</Badge>
             <h3 className="mt-4 text-2xl font-bold text-foreground">{study.title}</h3>
-            <p className="mt-4 text-muted">{study.businessOverview}</p>
+            <p className="mt-3 text-muted">{study.businessOverview}</p>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="overflow-hidden rounded-xl border border-red-500/20">
+                <div className="bg-red-500/10 px-3 py-1 text-[10px] font-bold uppercase text-red-500">Before</div>
+                <div className="aspect-[4/3] min-h-[160px]">
+                  <CaseStudyBeforePreview slug={study.slug} />
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-xl border border-emerald-500/20">
+                <div className="bg-emerald-500/10 px-3 py-1 text-[10px] font-bold uppercase text-emerald-600">After</div>
+                <div className="aspect-[4/3] min-h-[160px]">
+                  <CaseStudyAfterPreview slug={study.slug} />
+                </div>
+              </div>
+            </div>
+
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               <div>
                 <p className="text-sm font-semibold text-foreground">Challenges</p>
@@ -192,7 +214,7 @@ export function CaseStudyPreview({ caseStudies }: { caseStudies: CaseStudy[] }) 
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
-          </Card>
+          </div>
         </motion.div>
       </Container>
     </section>

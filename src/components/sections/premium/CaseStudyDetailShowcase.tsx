@@ -15,7 +15,10 @@ import {
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { BrowserMockup, ScreenshotFrame } from "@/components/mockups/DeviceMockups";
+import {
+  CaseStudyRedesignComparison,
+  CaseStudyAfterShowcase,
+} from "@/components/sections/premium/CaseStudyRedesignComparison";
 import {
   IndustryIllustration,
   getIndustryKey,
@@ -79,7 +82,7 @@ export function CaseStudyDetailShowcase({ study }: { study: CaseStudy }) {
             Back to Case Studies
           </Link>
 
-          <div className="mt-8 grid items-center gap-10 lg:grid-cols-2">
+          <div className="mt-8 grid items-start gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -99,9 +102,8 @@ export function CaseStudyDetailShowcase({ study }: { study: CaseStudy }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="overflow-hidden rounded-xl border border-white/20 shadow-2xl"
             >
-              <BrowserMockup industry={industryKey} title={study.title} />
+              <CaseStudyAfterShowcase slug={study.slug} title={study.title} />
             </motion.div>
           </div>
         </Container>
@@ -110,7 +112,9 @@ export function CaseStudyDetailShowcase({ study }: { study: CaseStudy }) {
       <section className="relative overflow-hidden py-20">
         <BackgroundEffects variant="default" />
         <Container className="relative">
-          <div className="mx-auto max-w-4xl space-y-12">
+          <div className="mx-auto max-w-5xl space-y-16">
+            <CaseStudyRedesignComparison slug={study.slug} />
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -150,36 +154,11 @@ export function CaseStudyDetailShowcase({ study }: { study: CaseStudy }) {
             <div>
               <h2 className="mb-6 text-center text-xl font-bold text-foreground">Improvement Plan</h2>
               <div className="grid gap-6 lg:grid-cols-3">
-                <ImprovementCard
-                  title="Website"
-                  icon={Globe}
-                  items={study.websiteImprovements}
-                  index={0}
-                />
-                <ImprovementCard
-                  title="Conversion"
-                  icon={MousePointerClick}
-                  items={study.conversionImprovements}
-                  index={1}
-                />
-                <ImprovementCard
-                  title="SEO"
-                  icon={Search}
-                  items={study.seoImprovements}
-                  index={2}
-                />
+                <ImprovementCard title="Website" icon={Globe} items={study.websiteImprovements} index={0} />
+                <ImprovementCard title="Conversion" icon={MousePointerClick} items={study.conversionImprovements} index={1} />
+                <ImprovementCard title="SEO" icon={Search} items={study.seoImprovements} index={2} />
               </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="overflow-hidden rounded-2xl"
-            >
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">After Redesign</p>
-              <ScreenshotFrame industry={industryKey} label={`${study.title} after redesign`} />
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
