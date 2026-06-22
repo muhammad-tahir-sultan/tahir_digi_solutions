@@ -1,0 +1,731 @@
+{
+  "services": [
+    {
+      "id": "svc-1",
+      "title": "High-Converting Website Design",
+      "description": "Custom websites engineered to turn visitors into leads, bookings, and customers for your local business.",
+      "benefits": [
+        "Professional brand presence that builds trust instantly",
+        "Mobile-first layouts optimized for local searchers",
+        "Clear calls-to-action that drive inquiries",
+        "Fast load times that reduce bounce rates"
+      ],
+      "deliverables": [
+        "Custom homepage and key page designs",
+        "Mobile-responsive development",
+        "Contact and lead capture forms",
+        "Basic on-page SEO setup",
+        "Launch support and training"
+      ],
+      "process": [
+        "Discovery call to understand your business goals",
+        "Wireframes and design mockups for approval",
+        "Development with conversion best practices",
+        "Testing across devices and browsers",
+        "Launch and post-launch optimization"
+      ],
+      "faqs": [
+        {
+          "question": "How long does a new website take?",
+          "answer": "Most projects launch within 4–8 weeks depending on scope and content readiness."
+        },
+        {
+          "question": "Do you write the content?",
+          "answer": "We can guide content structure and provide copy recommendations, or work with content you provide."
+        }
+      ]
+    },
+    {
+      "id": "svc-2",
+      "title": "Website Redesign",
+      "description": "Transform an outdated site into a modern, high-performing growth asset without losing your existing SEO value.",
+      "benefits": [
+        "Fresh, professional look that reflects your brand",
+        "Improved user experience and navigation",
+        "Better conversion paths for leads and bookings",
+        "Preserved or improved search rankings"
+      ],
+      "deliverables": [
+        "Site audit and redesign strategy",
+        "Updated visual design system",
+        "Responsive rebuild of all pages",
+        "301 redirects and SEO migration plan",
+        "Performance optimization"
+      ],
+      "process": [
+        "Audit your current website and analytics",
+        "Identify conversion and UX improvements",
+        "Design and develop the new experience",
+        "Migrate content and implement redirects",
+        "Launch with monitoring and support"
+      ],
+      "faqs": [
+        {
+          "question": "Will a redesign hurt my SEO?",
+          "answer": "Not when done correctly. We follow SEO-safe migration practices including redirects and metadata preservation."
+        },
+        {
+          "question": "Can you redesign without changing my domain?",
+          "answer": "Yes. Most redesigns stay on the same domain with improved design and performance."
+        }
+      ]
+    },
+    {
+      "id": "svc-3",
+      "title": "Local Business Websites",
+      "description": "Industry-tailored websites built for dentists, law firms, accountants, real estate agencies, and physiotherapy clinics.",
+      "benefits": [
+        "Industry-specific page structures",
+        "Trust signals that resonate with your audience",
+        "Local SEO foundations built in",
+        "Appointment and inquiry-focused design"
+      ],
+      "deliverables": [
+        "Industry-relevant page templates",
+        "Service and location-focused content areas",
+        "Google Business Profile integration guidance",
+        "Schema markup for local businesses",
+        "Lead capture and booking CTAs"
+      ],
+      "process": [
+        "Industry research and competitor review",
+        "Structure pages for your specific market",
+        "Build trust-focused design and copy framework",
+        "Implement local SEO best practices",
+        "Launch with conversion tracking setup"
+      ],
+      "faqs": [
+        {
+          "question": "Do you specialize in my industry?",
+          "answer": "We focus on local service businesses including dental, legal, real estate, accounting, and physiotherapy."
+        }
+      ]
+    },
+    {
+      "id": "svc-4",
+      "title": "Landing Pages",
+      "description": "Focused, high-converting landing pages for campaigns, promotions, and specific service offers.",
+      "benefits": [
+        "Single-purpose pages that maximize conversions",
+        "A/B test-ready structure",
+        "Fast deployment for time-sensitive campaigns",
+        "Clear messaging aligned to ad traffic"
+      ],
+      "deliverables": [
+        "Campaign landing page design",
+        "Mobile-optimized development",
+        "Lead capture form integration",
+        "Conversion tracking setup",
+        "Performance optimization"
+      ],
+      "process": [
+        "Define campaign goal and target audience",
+        "Create focused copy and layout",
+        "Build and test the landing page",
+        "Connect forms and tracking",
+        "Launch and monitor results"
+      ],
+      "faqs": [
+        {
+          "question": "How is a landing page different from a website?",
+          "answer": "Landing pages have one goal—convert visitors from a specific campaign—with minimal distractions."
+        }
+      ]
+    },
+    {
+      "id": "svc-5",
+      "title": "Conversion Optimization",
+      "description": "Data-driven improvements to increase leads, bookings, and customer inquiries from your existing traffic.",
+      "benefits": [
+        "More leads without increasing ad spend",
+        "Improved form completion rates",
+        "Better CTA placement and messaging",
+        "Reduced friction in the user journey"
+      ],
+      "deliverables": [
+        "Conversion audit report",
+        "UX and CTA recommendations",
+        "A/B test plan",
+        "Implementation of priority fixes",
+        "Before/after performance summary"
+      ],
+      "process": [
+        "Analyze user behavior and conversion paths",
+        "Identify friction points and drop-offs",
+        "Prioritize high-impact improvements",
+        "Implement and test changes",
+        "Measure and iterate"
+      ],
+      "faqs": [
+        {
+          "question": "Do I need a lot of traffic for CRO?",
+          "answer": "Some traffic helps, but even modest visitor volumes benefit from fixing obvious conversion barriers."
+        }
+      ]
+    },
+    {
+      "id": "svc-6",
+      "title": "Technical SEO",
+      "description": "Foundation-level SEO that helps local customers find your business when they search online.",
+      "benefits": [
+        "Improved visibility in local search results",
+        "Faster, crawlable website structure",
+        "Proper metadata and schema markup",
+        "Better indexing and ranking potential"
+      ],
+      "deliverables": [
+        "Technical SEO audit",
+        "On-page optimization",
+        "Schema and structured data setup",
+        "Site speed improvements",
+        "SEO monitoring recommendations"
+      ],
+      "process": [
+        "Run technical and on-page SEO audit",
+        "Fix critical issues affecting visibility",
+        "Optimize pages for target keywords",
+        "Implement structured data",
+        "Provide ongoing SEO guidance"
+      ],
+      "faqs": [
+        {
+          "question": "How long until SEO results show?",
+          "answer": "Technical fixes can improve performance quickly; ranking improvements typically build over 3–6 months."
+        }
+      ]
+    },
+    {
+      "id": "svc-7",
+      "title": "Website Maintenance",
+      "description": "Ongoing support to keep your website secure, updated, and performing at its best.",
+      "benefits": [
+        "Peace of mind with proactive monitoring",
+        "Security updates and backups",
+        "Content updates when you need them",
+        "Consistent uptime and performance"
+      ],
+      "deliverables": [
+        "Monthly security and plugin updates",
+        "Regular backups",
+        "Uptime monitoring",
+        "Minor content and design updates",
+        "Priority support channel"
+      ],
+      "process": [
+        "Set up monitoring and backup schedule",
+        "Apply regular updates and patches",
+        "Handle content change requests",
+        "Monthly performance check",
+        "Quarterly strategy review"
+      ],
+      "faqs": [
+        {
+          "question": "What if something breaks on my site?",
+          "answer": "Maintenance clients receive priority support to diagnose and resolve issues quickly."
+        }
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "id": "ind-1",
+      "slug": "dentists",
+      "name": "Dentists",
+      "challenges": [
+        "Competing with multiple dental practices in the same area",
+        "Outdated websites that don't reflect modern care standards",
+        "Low online appointment requests",
+        "Poor mobile experience for patients searching on phones"
+      ],
+      "opportunities": [
+        "Showcase services, team, and patient trust signals",
+        "Capture appointment requests 24/7",
+        "Rank for local dental search terms",
+        "Build credibility with before/after galleries and reviews"
+      ],
+      "websiteFeatures": [
+        "Online appointment booking integration",
+        "Service pages for each treatment type",
+        "Team and credentials showcase",
+        "Patient testimonials and reviews",
+        "Insurance and payment information"
+      ],
+      "conversionElements": [
+        "Prominent Book Appointment CTA",
+        "Click-to-call on mobile",
+        "New patient offer banner",
+        "Trust badges and certifications",
+        "FAQ section for common patient questions"
+      ]
+    },
+    {
+      "id": "ind-2",
+      "slug": "law-firms",
+      "name": "Law Firms",
+      "challenges": [
+        "Highly competitive legal market in every city",
+        "Websites that fail to communicate expertise and trust",
+        "Low consultation request rates",
+        "Complex service offerings that confuse visitors"
+      ],
+      "opportunities": [
+        "Position attorneys as trusted local experts",
+        "Generate qualified consultation requests",
+        "Educate prospects with practice area content",
+        "Differentiate from generic law firm templates"
+      ],
+      "websiteFeatures": [
+        "Practice area pages with clear explanations",
+        "Attorney profiles with credentials",
+        "Case results and client testimonials",
+        "Free consultation request forms",
+        "Legal resource blog or FAQ section"
+      ],
+      "conversionElements": [
+        "Free Consultation CTA on every page",
+        "Attorney credibility signals",
+        "Clear practice area navigation",
+        "Confidential contact forms",
+        "Emergency contact options where applicable"
+      ]
+    },
+    {
+      "id": "ind-3",
+      "slug": "real-estate",
+      "name": "Real Estate Agencies",
+      "challenges": [
+        "Standing out among many agents and brokerages",
+        "Websites that don't showcase listings effectively",
+        "Low lead capture from property searchers",
+        "Weak personal brand presence online"
+      ],
+      "opportunities": [
+        "Build a personal brand that attracts sellers and buyers",
+        "Capture leads from listing and neighborhood pages",
+        "Showcase market expertise and sold properties",
+        "Integrate IDX and property search features"
+      ],
+      "websiteFeatures": [
+        "Agent bio and personal brand story",
+        "Property listing showcase",
+        "Neighborhood and market guides",
+        "Home valuation lead capture",
+        "Client testimonials and sold properties"
+      ],
+      "conversionElements": [
+        "Home Valuation CTA",
+        "Schedule a Showing forms",
+        "Market report download offers",
+        "Mortgage calculator integration",
+        "Mobile-optimized property search"
+      ]
+    },
+    {
+      "id": "ind-4",
+      "slug": "accounting",
+      "name": "Accounting Firms",
+      "challenges": [
+        "Difficulty communicating complex services simply",
+        "Websites that look outdated compared to competitors",
+        "Low inquiry rates during tax season peaks",
+        "Missing trust signals for financial services"
+      ],
+      "opportunities": [
+        "Simplify services for small business owners",
+        "Capture leads during tax and advisory seasons",
+        "Build authority with educational content",
+        "Showcase credentials and industry specializations"
+      ],
+      "websiteFeatures": [
+        "Service pages for tax, bookkeeping, and advisory",
+        "Team credentials and certifications",
+        "Client industry specializations",
+        "Secure document upload portal link",
+        "Tax deadline reminders and resources"
+      ],
+      "conversionElements": [
+        "Free Consultation or Quote Request CTA",
+        "Tax season promotional banners",
+        "Trust signals (CPA, certifications)",
+        "Client success stories",
+        "Simple contact forms with service selector"
+      ]
+    },
+    {
+      "id": "ind-5",
+      "slug": "physiotherapy",
+      "name": "Physiotherapy Clinics",
+      "challenges": [
+        "Patients searching for immediate relief options",
+        "Websites lacking condition-specific information",
+        "Low online booking rates",
+        "Competition from large physiotherapy chains"
+      ],
+      "opportunities": [
+        "Educate patients on treatments and recovery",
+        "Enable direct online booking",
+        "Build trust with therapist profiles and credentials",
+        "Target condition-specific search traffic"
+      ],
+      "websiteFeatures": [
+        "Condition and treatment pages",
+        "Therapist team profiles",
+        "Online booking integration",
+        "Insurance and direct billing info",
+        "Patient education resources"
+      ],
+      "conversionElements": [
+        "Book Appointment CTA",
+        "Direct billing trust badges",
+        "First visit what to expect section",
+        "Patient testimonials",
+        "Click-to-call for urgent inquiries"
+      ]
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "port-1",
+      "slug": "demo-dental-clinic",
+      "title": "Demo Dental Clinic Redesign",
+      "industry": "Dentists",
+      "overview": "A complete redesign concept for a family dental practice focused on increasing appointment bookings and showcasing modern care.",
+      "technologies": ["Next.js", "TypeScript", "Tailwind CSS"],
+      "features": [
+        "Online appointment booking flow",
+        "Service pages for cosmetic and general dentistry",
+        "Team showcase with credentials",
+        "Mobile-first responsive design",
+        "Patient testimonial section"
+      ],
+      "demoUrl": "#",
+      "coverImage": "/images/portfolio-dental.jpg"
+    },
+    {
+      "id": "port-2",
+      "slug": "demo-law-firm",
+      "title": "Demo Law Firm Website",
+      "industry": "Law Firms",
+      "overview": "A professional law firm website concept designed to generate consultation requests and establish attorney credibility.",
+      "technologies": ["Next.js", "TypeScript", "Tailwind CSS"],
+      "features": [
+        "Practice area pages",
+        "Attorney profile pages",
+        "Free consultation forms",
+        "Case results showcase",
+        "Legal resource blog layout"
+      ],
+      "demoUrl": "#",
+      "coverImage": "/images/portfolio-law.jpg"
+    },
+    {
+      "id": "port-3",
+      "slug": "demo-real-estate",
+      "title": "Demo Real Estate Agency",
+      "industry": "Real Estate",
+      "overview": "A personal brand website concept for a real estate agent focused on lead capture and property showcase.",
+      "technologies": ["Next.js", "TypeScript", "Tailwind CSS"],
+      "features": [
+        "Property listing grid",
+        "Home valuation lead form",
+        "Neighborhood guides",
+        "Agent bio and testimonials",
+        "Mobile property search UI"
+      ],
+      "demoUrl": "#",
+      "coverImage": "/images/portfolio-realestate.jpg"
+    },
+    {
+      "id": "port-4",
+      "slug": "demo-accounting-firm",
+      "title": "Demo Accounting Firm",
+      "industry": "Accounting",
+      "overview": "A clean, trust-focused website concept for an accounting firm serving small businesses.",
+      "technologies": ["Next.js", "TypeScript", "Tailwind CSS"],
+      "features": [
+        "Service breakdown pages",
+        "Team credentials display",
+        "Tax season CTA banners",
+        "Client industry pages",
+        "Secure contact forms"
+      ],
+      "demoUrl": "#",
+      "coverImage": "/images/portfolio-accounting.jpg"
+    },
+    {
+      "id": "port-5",
+      "slug": "demo-physiotherapy",
+      "title": "Demo Physiotherapy Clinic",
+      "industry": "Physiotherapy",
+      "overview": "A patient-focused clinic website concept designed to drive online bookings and educate on treatments.",
+      "technologies": ["Next.js", "TypeScript", "Tailwind CSS"],
+      "features": [
+        "Condition-specific landing pages",
+        "Online booking integration UI",
+        "Therapist team profiles",
+        "Insurance information section",
+        "Patient education resources"
+      ],
+      "demoUrl": "#",
+      "coverImage": "/images/portfolio-physio.jpg"
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "cs-1",
+      "slug": "demo-dental-clinic-redesign",
+      "title": "Demo Dental Clinic Redesign",
+      "industry": "Dentists",
+      "businessOverview": "A family dental practice serving a suburban community, offering general and cosmetic dentistry with a focus on new patient acquisition.",
+      "challenges": [
+        "Outdated website design from 2016",
+        "Less than 5% mobile conversion rate",
+        "No clear appointment booking path",
+        "Poor local search visibility"
+      ],
+      "strategy": "Redesign with mobile-first approach, clear appointment CTAs, service-specific landing pages, and local SEO foundation.",
+      "websiteImprovements": [
+        "Modern, clean design reflecting quality of care",
+        "Mobile-optimized layout with click-to-call",
+        "Dedicated service pages for top treatments",
+        "Team page with credentials and photos",
+        "Streamlined 3-step booking flow"
+      ],
+      "conversionImprovements": [
+        "Prominent Book Appointment button on every page",
+        "New patient special offer banner",
+        "Reduced form fields from 8 to 4",
+        "Added social proof near CTAs",
+        "Sticky mobile CTA bar"
+      ],
+      "seoImprovements": [
+        "Optimized title tags and meta descriptions",
+        "Local business schema markup",
+        "Service area pages for nearby neighborhoods",
+        "Improved page speed scores",
+        "Google Business Profile alignment"
+      ],
+      "expectedOutcome": "Based on industry benchmarks, practices with optimized websites typically see improved appointment request rates and stronger local search presence within 3–6 months of launch."
+    },
+    {
+      "id": "cs-2",
+      "slug": "demo-law-firm-growth",
+      "title": "Demo Law Firm Growth Project",
+      "industry": "Law Firms",
+      "businessOverview": "A mid-size personal injury and family law firm looking to increase consultation requests from local search traffic.",
+      "challenges": [
+        "Generic template website shared with competitors",
+        "Low consultation form submissions",
+        "Practice areas poorly organized",
+        "No attorney differentiation"
+      ],
+      "strategy": "Build a trust-focused website with clear practice area navigation, attorney profiles, and conversion-optimized consultation forms.",
+      "websiteImprovements": [
+        "Custom design reflecting firm professionalism",
+        "Dedicated practice area pages with FAQs",
+        "Attorney bio pages with case highlights",
+        "Client testimonial integration",
+        "Mobile-responsive consultation forms"
+      ],
+      "conversionImprovements": [
+        "Free Consultation CTA above the fold",
+        "Simplified consultation request form",
+        "Trust badges and bar association memberships",
+        "Live chat placeholder integration",
+        "Exit-intent consultation offer"
+      ],
+      "seoImprovements": [
+        "Practice area keyword optimization",
+        "Local landing pages for service areas",
+        "Attorney schema markup",
+        "Blog structure for legal content",
+        "Internal linking strategy"
+      ],
+      "expectedOutcome": "Law firms with conversion-focused websites typically experience improved consultation request quality and better engagement from local search visitors."
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "name": "Dr. Sarah Mitchell",
+      "business": "Bright Smile Dental",
+      "industry": "Dentists",
+      "rating": 5,
+      "review": "Digital Solutions transformed our online presence. Our new website looks professional and patients constantly mention how easy it is to book appointments online."
+    },
+    {
+      "id": "test-2",
+      "name": "James Rodriguez",
+      "business": "Rodriguez & Associates Law",
+      "industry": "Law Firms",
+      "rating": 5,
+      "review": "We needed a website that reflected the quality of our legal work. Digital Solutions delivered a site that generates consistent consultation requests."
+    },
+    {
+      "id": "test-3",
+      "name": "Emily Chen",
+      "business": "Chen Realty Group",
+      "industry": "Real Estate",
+      "rating": 5,
+      "review": "My personal brand website has become my best lead generation tool. The home valuation feature alone brings in qualified seller leads every week."
+    },
+    {
+      "id": "test-4",
+      "name": "Michael Thompson",
+      "business": "Thompson Accounting",
+      "industry": "Accounting",
+      "rating": 5,
+      "review": "During tax season, our website handles inquiries we used to miss. Clean design, clear services, and clients trust us before they even call."
+    },
+    {
+      "id": "test-5",
+      "name": "Dr. Lisa Park",
+      "business": "Active Life Physiotherapy",
+      "industry": "Physiotherapy",
+      "rating": 5,
+      "review": "Patients find us online and book directly through the website. The condition-specific pages help people understand our treatments before their first visit."
+    }
+  ],
+  "pricing": [
+    {
+      "id": "price-1",
+      "name": "Starter",
+      "price": "From $2,500",
+      "description": "Essential web presence for small local businesses getting started online.",
+      "features": [
+        "Up to 5 custom pages",
+        "Mobile-responsive design",
+        "Contact form integration",
+        "Basic on-page SEO",
+        "30 days post-launch support"
+      ],
+      "deliverables": [
+        "Homepage design and development",
+        "About, Services, and Contact pages",
+        "Google Analytics setup",
+        "Mobile optimization",
+        "Launch checklist"
+      ],
+      "timeline": "3–4 weeks"
+    },
+    {
+      "id": "price-2",
+      "name": "Professional",
+      "price": "From $5,000",
+      "description": "Complete growth-focused website for businesses ready to generate consistent leads.",
+      "features": [
+        "Up to 10 custom pages",
+        "Conversion-optimized design",
+        "Industry-specific page templates",
+        "Local SEO foundation",
+        "90 days post-launch support"
+      ],
+      "deliverables": [
+        "Full website design and development",
+        "Service and industry pages",
+        "Lead capture forms",
+        "Schema markup and SEO setup",
+        "Performance optimization"
+      ],
+      "timeline": "5–8 weeks",
+      "featured": true
+    },
+    {
+      "id": "price-3",
+      "name": "Premium",
+      "price": "From $10,000",
+      "description": "Enterprise-quality website with advanced features for competitive local markets.",
+      "features": [
+        "Unlimited custom pages",
+        "Advanced conversion optimization",
+        "Custom integrations (booking, CRM)",
+        "Comprehensive SEO strategy",
+        "6 months priority support"
+      ],
+      "deliverables": [
+        "Full custom website build",
+        "Landing pages for campaigns",
+        "Booking or CRM integration",
+        "Monthly performance review (3 months)",
+        "Content strategy guidance"
+      ],
+      "timeline": "8–12 weeks"
+    }
+  ],
+  "content": {
+    "hero": {
+      "headline": "Get More Leads & Bookings With a High-Converting Website",
+      "subheadline": "We help dentists, law firms, accountants, physiotherapy clinics, and real estate agencies turn website visitors into paying customers.",
+      "primaryCta": "Get Free Website Audit",
+      "secondaryCta": "Book Free Consultation"
+    },
+    "about": {
+      "mission": "To help local businesses grow by building websites that attract customers, generate inquiries, and deliver measurable results.",
+      "vision": "To become the most trusted local business growth partner, known for transforming online presence into real business outcomes.",
+      "story": "Digital Solutions was founded with a simple belief: local businesses deserve the same quality of digital experience as enterprise companies. We saw too many dentists, law firms, accountants, and clinics struggling with outdated websites that failed to convert visitors into customers. We built Digital Solutions to change that — partnering with local businesses to create high-converting websites that drive real growth.",
+      "whyChooseUs": [
+        "We focus exclusively on local service businesses",
+        "Every design decision is driven by conversion goals",
+        "Transparent process with clear timelines and deliverables",
+        "Long-term partnership approach, not one-off projects",
+        "Industry-specific expertise across 5 key verticals"
+      ]
+    },
+    "cta": {
+      "title": "Ready to Turn Your Website Into a Lead Generation Machine?",
+      "subtitle": "Get a free website audit and discover exactly how to attract more customers online.",
+      "primaryCta": "Get Free Website Audit",
+      "secondaryCta": "Book Free Consultation"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Digital Solutions | Local Business Growth Partner",
+      "description": "We help local businesses attract more customers with high-converting websites. Serving dentists, law firms, accountants, real estate agencies, and physiotherapy clinics.",
+      "ogTitle": "Get More Leads With a High-Converting Website",
+      "ogDescription": "Your local business growth partner. We build websites that generate leads, bookings, and customers."
+    },
+    "about": {
+      "title": "About Us | Digital Solutions",
+      "description": "Learn about Digital Solutions — your local business growth partner focused on transparency, quality, and measurable results."
+    },
+    "services": {
+      "title": "Services | Digital Solutions",
+      "description": "Website design, redesign, local SEO, landing pages, conversion optimization, and maintenance for local businesses."
+    },
+    "industries": {
+      "title": "Industries We Serve | Digital Solutions",
+      "description": "Specialized website solutions for dentists, law firms, real estate agencies, accounting firms, and physiotherapy clinics."
+    },
+    "portfolio": {
+      "title": "Portfolio | Digital Solutions",
+      "description": "Explore our demo projects for local businesses across dental, legal, real estate, accounting, and physiotherapy industries."
+    },
+    "case-studies": {
+      "title": "Case Studies | Digital Solutions",
+      "description": "See how we approach website redesign and growth projects for local businesses. Demo case studies with real strategies."
+    },
+    "process": {
+      "title": "Our Process | Digital Solutions",
+      "description": "Our proven 6-step process from discovery to launch and ongoing support for local business websites."
+    },
+    "pricing": {
+      "title": "Pricing | Digital Solutions",
+      "description": "Transparent pricing packages for local business websites. Starter, Professional, and Premium options available."
+    },
+    "testimonials": {
+      "title": "Testimonials | Digital Solutions",
+      "description": "Read what local business owners say about working with Digital Solutions."
+    },
+    "contact": {
+      "title": "Contact Us | Digital Solutions",
+      "description": "Get in touch with Digital Solutions. Book a free consultation or send us a message."
+    },
+    "free-audit": {
+      "title": "Free Website Audit | Digital Solutions",
+      "description": "Get a free website audit covering mobile experience, speed, SEO, and conversion optimization."
+    }
+  },
+  "contactLeads": [],
+  "auditRequests": []
+}
