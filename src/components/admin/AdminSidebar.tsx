@@ -47,7 +47,7 @@ export function AdminSidebar() {
     <aside className="flex w-64 shrink-0 flex-col border-r border-border bg-card">
       <div className="border-b border-border p-6">
         <Link href="/admin" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-xs font-bold text-primary-foreground">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-xs font-bold text-white">
             DS
           </div>
           <div>

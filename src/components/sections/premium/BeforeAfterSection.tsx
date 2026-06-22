@@ -1,15 +1,12 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
 import { MotionSection } from "@/components/visual/MotionSection";
-import {
-  BeforeWebsiteScene,
-  AfterWebsiteScene,
-} from "@/components/mockups/WebsitePreviewScenes";
+import { flowstepImages } from "@/lib/flowstep-assets";
 
 export function BeforeAfterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,30 +41,40 @@ export function BeforeAfterSection() {
   };
 
   return (
-    <section className="relative overflow-hidden py-20">
-      <BackgroundEffects variant="default" />
+    <section className="relative overflow-hidden py-16 sm:py-20">
       <Container className="relative">
         <SectionHeading
           badge="Transformation"
+          badgeVariant="emerald"
           title="See the Difference a Premium Website Makes"
           description="Drag the slider to compare outdated websites with our conversion-focused redesigns."
         />
 
-        <MotionSection className="mx-auto mt-12 max-w-4xl">
+        <MotionSection className="mx-auto mt-10 max-w-4xl">
           <div
             ref={containerRef}
-            className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border shadow-2xl select-none"
+            className="relative aspect-[16/10] select-none overflow-hidden rounded-2xl border border-white/10 shadow-2xl"
             role="group"
             aria-label="Before and after website comparison. Use arrow keys or drag the slider."
           >
-            <div className="absolute inset-0">
-              <AfterWebsiteScene industry="dentists" />
-            </div>
+            <Image
+              src={flowstepImages.beforeAfter.after}
+              alt="After website redesign"
+              fill
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
             <div
               className="absolute inset-0 overflow-hidden"
               style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
             >
-              <BeforeWebsiteScene />
+              <Image
+                src={flowstepImages.beforeAfter.before}
+                alt="Before website redesign"
+                fill
+                className="object-cover grayscale"
+                sizes="(max-width: 896px) 100vw, 896px"
+              />
             </div>
 
             <div
@@ -111,12 +118,12 @@ export function BeforeAfterSection() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="glass rounded-xl p-4 text-center"
+                className="flow-card p-4 text-center"
               >
                 <p className="text-sm font-medium text-muted">{metric.label}</p>
                 <div className="mt-2 flex items-center justify-center gap-3">
-                  <span className="text-sm text-red-500 line-through">{metric.before}</span>
-                  <span className="text-lg font-bold text-emerald-600">{metric.after}</span>
+                  <span className="text-sm text-red-400 line-through">{metric.before}</span>
+                  <span className="text-lg font-bold text-emerald-400">{metric.after}</span>
                 </div>
               </motion.div>
             ))}

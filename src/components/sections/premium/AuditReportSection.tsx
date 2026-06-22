@@ -1,122 +1,94 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { AuditIllustration } from "@/components/illustrations/IndustryIllustrations";
 import { cn } from "@/lib/utils";
-import { MotionSection } from "@/components/visual/MotionSection";
 
 const auditItems = [
-  { category: "Mobile Experience", score: 42, status: "critical" as const, issue: "Not mobile-responsive" },
-  { category: "Page Speed", score: 38, status: "critical" as const, issue: "Load time over 5 seconds" },
-  { category: "SEO Foundation", score: 55, status: "warning" as const, issue: "Missing meta descriptions" },
-  { category: "Conversion Paths", score: 48, status: "warning" as const, issue: "Weak call-to-action placement" },
-  { category: "Security", score: 72, status: "good" as const, issue: "SSL enabled" },
-  { category: "Accessibility", score: 61, status: "warning" as const, issue: "Missing alt text on images" },
+  { category: "Mobile", score: 38, status: "critical" as const, label: "Critical" },
+  { category: "Speed", score: 45, status: "warning" as const, label: "Needs Work" },
+  { category: "SEO", score: 61, status: "warning" as const, label: "Needs Work" },
+  { category: "Conversion", score: 42, status: "critical" as const, label: "Critical" },
+  { category: "Security", score: 78, status: "good" as const, label: "Good" },
+  { category: "Accessibility", score: 55, status: "warning" as const, label: "Needs Work" },
 ];
 
-function ScoreBar({ score, status }: { score: number; status: "critical" | "warning" | "good" }) {
-  const colors = {
-    critical: "bg-red-500",
-    warning: "bg-amber-500",
-    good: "bg-emerald-500",
-  };
-
-  return (
-    <div className="h-2 overflow-hidden rounded-full bg-border">
-      <motion.div
-        className={cn("h-full rounded-full", colors[status])}
-        initial={{ width: 0 }}
-        whileInView={{ width: `${score}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-    </div>
-  );
-}
+const statusColors = {
+  critical: "text-red-400 bg-red-400",
+  warning: "text-amber-400 bg-amber-400",
+  good: "text-emerald-400 bg-emerald-400",
+};
 
 export function AuditReportSection() {
   return (
-    <section className="relative overflow-hidden border-y border-border bg-secondary/30 py-20">
-      <BackgroundEffects variant="subtle" />
-      <Container className="relative">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeading
-              align="left"
-              badge="Free Audit"
-              title="See Exactly What's Holding Your Website Back"
-              description="Our comprehensive audit covers mobile experience, speed, SEO, conversions, and security — delivered in a clear, actionable report."
-            />
-            <MotionSection className="mt-8">
-              <Button href="/free-audit" size="lg">
-                Get Your Free Audit
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </MotionSection>
-          </div>
+    <section className="border-y border-border py-16 sm:py-20">
+      <Container>
+        <div className="flex flex-col items-center gap-8">
+          <SectionHeading
+            badge="Free Audit"
+            badgeVariant="amber"
+            title="See Exactly What's Holding Your Website Back"
+          />
 
-          <MotionSection delay={0.15}>
-            <div className="glass-strong overflow-hidden rounded-2xl shadow-xl">
-              <div className="flex items-center justify-between border-b border-border bg-primary/5 px-6 py-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10">
-                    <AuditIllustration />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Website Audit Report</p>
-                    <p className="text-xs text-muted">Sample preview · yourbusiness.com</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-2xl font-bold text-red-500">52</p>
-                  <p className="text-xs text-muted">Overall Score</p>
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flow-card w-full max-w-3xl p-8"
+          >
+            <div className="flex flex-col items-center gap-6 sm:flex-row">
+              <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full bg-[conic-gradient(#f87171_52%,#27272a_0)]">
+                <div className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-zinc-900">
+                  <span className="text-2xl font-bold text-red-400">52</span>
+                  <span className="text-[10px] text-muted">/100</span>
                 </div>
               </div>
-
-              <div className="space-y-4 p-6">
-                {auditItems.map((item, index) => (
-                  <motion.div
-                    key={item.category}
-                    initial={{ opacity: 0, x: 12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.06 }}
-                    className="rounded-xl border border-border bg-card/50 p-4"
-                  >
-                    <div className="mb-2 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        {item.status === "good" ? (
-                          <CheckCircle2 className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                        ) : (
-                          <AlertTriangle
-                            className={`h-4 w-4 ${item.status === "critical" ? "text-red-500" : "text-amber-500"}`}
-                            aria-hidden="true"
-                          />
-                        )}
-                        <span className="text-sm font-medium text-foreground">{item.category}</span>
-                      </div>
-                      <span className="text-sm font-bold text-foreground">{item.score}/100</span>
-                    </div>
-                    <ScoreBar score={item.score} status={item.status} />
-                    <p className="mt-2 text-xs text-muted">{item.issue}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="border-t border-border bg-emerald-500/5 px-6 py-4">
-                <p className="text-sm text-muted">
-                  <span className="font-semibold text-emerald-600">4 critical issues</span> found.
-                  Fix these to unlock an estimated{" "}
-                  <span className="font-semibold text-foreground">+120% more leads</span>.
+              <div className="text-center sm:text-left">
+                <p className="text-sm font-semibold uppercase tracking-wide text-muted">
+                  Website Audit Score
                 </p>
+                <p className="text-3xl font-bold text-foreground">52/100</p>
+                <p className="text-sm text-red-400">Significant improvements needed</p>
               </div>
             </div>
-          </MotionSection>
+
+            <div className="mt-6 space-y-4">
+              {auditItems.map((item, index) => (
+                <motion.div
+                  key={item.category}
+                  initial={{ opacity: 0, x: 12 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.06 }}
+                >
+                  <div className="mb-2 flex items-center justify-between text-sm">
+                    <span className="font-medium text-foreground">{item.category}</span>
+                    <span className={cn("font-semibold", statusColors[item.status].split(" ")[0])}>
+                      {item.score}/100 · {item.label}
+                    </span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
+                    <motion.div
+                      className={cn("h-full rounded-full", statusColors[item.status].split(" ")[1])}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${item.score}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.article>
+
+          <Button href="/free-audit" size="lg" className="flow-glow font-semibold">
+            <Search className="h-5 w-5" />
+            Get Your Free Audit
+            <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
       </Container>
     </section>

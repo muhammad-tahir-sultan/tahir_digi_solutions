@@ -27,17 +27,14 @@ export function Header() {
   if (pathname.startsWith("/admin")) return null;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl">
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-white">
               DS
             </div>
-            <div className="hidden sm:block">
-              <p className="text-sm font-bold text-foreground">Digital Solutions</p>
-              <p className="text-xs text-muted">Local Business Growth Partner</p>
-            </div>
+            <p className="text-sm font-semibold tracking-tight text-foreground">Digital Solutions</p>
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
@@ -59,7 +56,7 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <ThemeToggle className="hidden sm:inline-flex" />
-            <Button href="/free-audit" size="sm" className="hidden md:inline-flex">
+            <Button href="/free-audit" size="sm" className="hidden font-semibold md:inline-flex">
               Free Audit
             </Button>
             <button

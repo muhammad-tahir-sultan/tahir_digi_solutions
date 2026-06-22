@@ -1,89 +1,97 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import {
+  Activity,
+  ArrowRight,
+  BarChart3,
+  Building,
+  Scale,
+  Smile,
+} from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
-import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { BrowserMockup } from "@/components/mockups/DeviceMockups";
-import {
-  IndustryIllustration,
-  getIndustryKey,
-  industryGradients,
-} from "@/components/illustrations/IndustryIllustrations";
+import { industryFlowConfig } from "@/lib/flowstep-assets";
 import type { Industry } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const industryLabels: Record<string, string> = {
-  Dentists: "Dentist",
-  "Law Firms": "Law Firm",
-  "Real Estate Agencies": "Real Estate",
-  "Real Estate": "Real Estate",
-  "Accounting Firms": "Accountant",
-  Accounting: "Accountant",
-  "Physiotherapy Clinics": "Physiotherapy",
-  Physiotherapy: "Physiotherapy",
-};
+const iconMap = {
+  Smile,
+  Scale,
+  Building,
+  BarChart3,
+  Activity,
+} as const;
 
 export function IndustryShowcaseSection({ industries }: { industries: Industry[] }) {
+  const items = industryFlowConfig.map((config) => {
+    const industry = industries.find((i) => i.slug === config.key);
+    return { ...config, industry };
+  });
+
   return (
-    <section className="relative overflow-hidden border-y border-border bg-secondary/30 py-20">
-      <BackgroundEffects variant="subtle" />
-      <Container className="relative">
+    <section className="border-y border-border py-16 sm:py-20">
+      <Container>
         <SectionHeading
           badge="Industries"
+          badgeVariant="amber"
           title="Built for Businesses Like Yours"
           description="Industry-specific designs that speak your clients' language and drive real results."
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {industries.map((industry, index) => {
-            const key = getIndustryKey(industry.name);
-            const gradient = industryGradients[key];
-            const label = industryLabels[industry.name] ?? industry.name;
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {items.map((item, index) => {
+            const Icon = iconMap[item.icon as keyof typeof iconMap] ?? Smile;
 
             return (
               <motion.div
-                key={industry.id}
+                key={item.key}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: index * 0.08, duration: 0.45 }}
+                transition={{ delay: index * 0.06, duration: 0.45 }}
               >
-                <Link href={`/industries#${industry.slug}`} className="group block h-full">
-                  <motion.article
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.25 }}
-                    className="glass-strong flex h-full flex-col overflow-hidden rounded-2xl"
+                <Link href={`/industries#${item.key}`} className="group block h-full">
+                  <article
+                    className={cn(
+                      "flow-card flex h-full flex-col overflow-hidden border-t-2 transition-transform hover:-translate-y-1",
+                      item.borderColor
+                    )}
                   >
-                    <div className={cn("relative h-32 bg-gradient-to-br p-6", gradient)}>
-                      <div className="absolute right-4 top-4 h-16 w-16 opacity-80">
-                        <IndustryIllustration industry={key} />
+                    <div className={cn("relative h-24 bg-gradient-to-br", item.headerGradient)}>
+                      <div className="absolute inset-0">
+                        <Image
+                          src={item.image}
+                          alt={`${item.name} website preview`}
+                          fill
+                          className="object-cover opacity-40"
+                          sizes="220px"
+                        />
                       </div>
-                      <p className="relative z-10 text-sm font-semibold uppercase tracking-wider text-white/80">
-                        {label}
-                      </p>
-                      <h3 className="relative z-10 mt-1 text-xl font-bold text-white">
-                        {industry.name}
-                      </h3>
+                      <div className="relative flex h-full flex-col justify-end p-4">
+                        <div className={cn("mb-2 flex h-8 w-8 items-center justify-center rounded-lg", item.iconBg)}>
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                        </div>
+                        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/80">
+                          {item.label}
+                        </p>
+                        <h3 className="text-sm font-bold text-white">{item.name}</h3>
+                      </div>
                     </div>
 
-                    <div className="relative -mt-6 mx-4 overflow-hidden rounded-xl border border-border shadow-lg transition-transform duration-300 group-hover:scale-[1.02]">
-                      <BrowserMockup industry={key} size="large" title={`${industry.name} website preview`} />
-                    </div>
-
-                    <div className="flex flex-1 flex-col p-6 pt-8">
-                      <p className="text-sm text-muted line-clamp-2">
-                        {industry.challenges[0]}
+                    <div className="flex flex-1 flex-col p-4">
+                      <p className="text-xs leading-relaxed text-muted">
+                        {item.industry?.challenges[0] ?? item.blurb}
                       </p>
-                      <p className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                        Explore solutions
-                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      <p className={cn("mt-3 flex items-center gap-1 text-xs font-semibold opacity-0 transition-opacity group-hover:opacity-100", item.linkColor)}>
+                        Explore
+                        <ArrowRight className="h-3 w-3" aria-hidden="true" />
                       </p>
                     </div>
-                  </motion.article>
+                  </article>
                 </Link>
               </motion.div>
             );

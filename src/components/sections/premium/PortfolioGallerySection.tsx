@@ -7,28 +7,43 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { DevicePairShowcase } from "@/components/mockups/DeviceMockups";
-import { getIndustryKey } from "@/components/illustrations/IndustryIllustrations";
+import {
+  FlowStepBrowserFrame,
+  FlowStepMobileFrame,
+} from "@/components/mockups/FlowStepHeroMockup";
+import { flowstepImages } from "@/lib/flowstep-assets";
 import type { PortfolioItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
+
+const portfolioImages: Record<string, { desktop: string; mobile?: string }> = {
+  Dentists: { desktop: flowstepImages.portfolio.dental, mobile: flowstepImages.portfolio.dentalMobile },
+  "Law Firms": { desktop: flowstepImages.portfolio.lawFirm },
+  "Real Estate Agencies": { desktop: flowstepImages.portfolio.realEstate },
+  "Real Estate": { desktop: flowstepImages.portfolio.realEstate },
+  "Accounting Firms": { desktop: flowstepImages.portfolio.accounting },
+  Accounting: { desktop: flowstepImages.portfolio.accounting },
+};
+
+function getPortfolioImages(industry: string) {
+  return portfolioImages[industry] ?? { desktop: flowstepImages.portfolio.dental, mobile: flowstepImages.portfolio.dentalMobile };
+}
 
 export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioItem[] }) {
   const items = portfolio.slice(0, 4);
 
   return (
-    <section className="relative overflow-hidden py-20">
-      <BackgroundEffects variant="default" />
+    <section className="relative overflow-hidden py-16 sm:py-20">
       <Container className="relative">
         <SectionHeading
           badge="Portfolio"
+          badgeVariant="sky"
           title="Websites That Win Clients"
           description="Explore demo projects across every industry we serve — from concept to conversion-ready design."
         />
 
-        <div className="mt-12 space-y-24">
+        <div className="mt-12 space-y-20">
           {items.map((item, index) => {
-            const industryKey = getIndustryKey(item.industry);
+            const images = getPortfolioImages(item.industry);
             const isReversed = index % 2 === 1;
 
             return (
@@ -43,8 +58,19 @@ export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioIte
                   isReversed && "lg:[direction:rtl]"
                 )}
               >
-                <div className={cn(isReversed && "lg:[direction:ltr]")}>
-                  <DevicePairShowcase industry={industryKey} title={item.title} />
+                <div className={cn("relative", isReversed && "lg:[direction:ltr]")}>
+                  <FlowStepBrowserFrame
+                    title={item.title}
+                    image={images.desktop}
+                    imageAlt={`${item.title} desktop preview`}
+                  />
+                  {images.mobile && (
+                    <FlowStepMobileFrame
+                      image={images.mobile}
+                      imageAlt={`${item.title} mobile preview`}
+                      className="absolute -bottom-4 -right-2 sm:-right-4"
+                    />
+                  )}
                 </div>
 
                 <div className={cn(isReversed && "lg:[direction:ltr]")}>

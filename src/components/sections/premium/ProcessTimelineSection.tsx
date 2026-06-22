@@ -1,10 +1,18 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+  Code2,
+  GitBranch,
+  Lightbulb,
+  PenTool,
+  Rocket,
+  Search,
+  TrendingUp,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { GrowthIllustration } from "@/components/illustrations/IndustryIllustrations";
 
 export interface ProcessStep {
   number: string;
@@ -84,6 +92,17 @@ export const detailedProcessSteps: ProcessStep[] = [
   },
 ];
 
+const stepIcons: Record<string, LucideIcon> = {
+  Discovery: Search,
+  Strategy: Lightbulb,
+  Planning: Lightbulb,
+  Design: PenTool,
+  Development: Code2,
+  Launch: Rocket,
+  Growth: TrendingUp,
+  Support: TrendingUp,
+};
+
 export function ProcessTimelineSection({
   steps = defaultProcessSteps,
   showHeading = true,
@@ -97,70 +116,85 @@ export function ProcessTimelineSection({
   title?: string;
   description?: string;
 }) {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <section className="relative overflow-hidden border-y border-border bg-secondary/30 py-20">
-      <BackgroundEffects variant="subtle" />
-      <Container className="relative">
+    <section className="border-y border-border py-16 sm:py-20">
+      <Container>
         {showHeading && (
-          <SectionHeading badge={badge} title={title} description={description} />
+          <SectionHeading
+            badge={badge}
+            badgeIcon={GitBranch}
+            badgeVariant="sky"
+            title={title}
+            description={description}
+          />
         )}
 
-        <div className={`relative mx-auto max-w-3xl ${showHeading ? "mt-16" : ""}`}>
+        <div className={`relative mx-auto max-w-3xl ${showHeading ? "mt-12" : ""}`}>
           <div
-            className="absolute left-8 top-0 hidden h-full w-px bg-gradient-to-b from-primary via-primary/50 to-transparent md:block"
+            className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-primary via-sky-400 to-primary shadow-[0_0_20px_2px_rgba(21,93,252,0.4)]"
             aria-hidden="true"
           />
 
-          <div className="space-y-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: index * 0.1, duration: 0.45 }}
-                className="relative flex gap-6 md:gap-8"
-              >
+          <div className="flex flex-col gap-8">
+            {steps.map((step, index) => {
+              const isLeft = index % 2 === 0;
+              const Icon = stepIcons[step.title] ?? Search;
+              const stepNum = parseInt(step.number, 10) || index + 1;
+
+              return (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 + 0.15, type: "spring", stiffness: 200 }}
-                  className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-blue-700 text-lg font-bold text-white shadow-lg shadow-primary/25"
+                  key={step.number}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: index * 0.08, duration: 0.45 }}
+                  className="flex items-center gap-4 sm:gap-6"
                 >
-                  {step.number}
-                  {!reduceMotion && index < steps.length - 1 && (
-                    <motion.div
-                      className="absolute -bottom-8 left-1/2 h-8 w-px bg-primary/30 md:hidden"
-                      initial={{ scaleY: 0 }}
-                      whileInView={{ scaleY: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 + 0.3 }}
-                    />
-                  )}
-                </motion.div>
+                  <div className={`hidden flex-1 sm:block ${!isLeft ? "order-3" : ""}`}>
+                    {isLeft && (
+                      <article className="flow-card p-4 backdrop-blur-sm">
+                        <div className="flex flex-col items-end gap-0.5 text-right">
+                          <span className="flex items-center gap-1.5 text-base font-bold text-foreground">
+                            {step.title}
+                            <Icon className="h-4 w-4 text-sky-400" aria-hidden="true" />
+                          </span>
+                          <span className="text-xs leading-relaxed text-muted">{step.description}</span>
+                        </div>
+                      </article>
+                    )}
+                  </div>
 
-                <motion.div whileHover={{ x: 4 }} className="glass-strong flex-1 rounded-2xl p-6">
-                  <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm text-muted">{step.description}</p>
+                  <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-sky-400 text-base font-bold text-white shadow-lg shadow-primary/40">
+                    {stepNum}
+                  </div>
+
+                  <div className={`flex-1 ${isLeft ? "sm:hidden" : ""}`}>
+                    {!isLeft ? (
+                      <article className="flow-card p-4 backdrop-blur-sm">
+                        <div className="flex flex-col gap-0.5">
+                          <span className="flex items-center gap-1.5 text-base font-bold text-foreground">
+                            <Icon className="h-4 w-4 text-sky-400" aria-hidden="true" />
+                            {step.title}
+                          </span>
+                          <span className="text-xs leading-relaxed text-muted">{step.description}</span>
+                        </div>
+                      </article>
+                    ) : (
+                      <article className="flow-card p-4 backdrop-blur-sm sm:hidden">
+                        <div className="flex flex-col gap-0.5">
+                          <span className="flex items-center gap-1.5 text-base font-bold text-foreground">
+                            <Icon className="h-4 w-4 text-sky-400" aria-hidden="true" />
+                            {step.title}
+                          </span>
+                          <span className="text-xs leading-relaxed text-muted">{step.description}</span>
+                        </div>
+                      </article>
+                    )}
+                  </div>
                 </motion.div>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-12 hidden justify-center lg:flex"
-            aria-hidden="true"
-          >
-            <div className="h-24 w-48">
-              <GrowthIllustration />
-            </div>
-          </motion.div>
         </div>
       </Container>
     </section>

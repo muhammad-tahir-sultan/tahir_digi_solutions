@@ -1,13 +1,19 @@
 import { cn } from "@/lib/utils";
+import { SectionBadge } from "@/components/ui/SectionBadge";
+import type { LucideIcon } from "lucide-react";
 
 export function SectionHeading({
   badge,
+  badgeIcon,
+  badgeVariant = "primary",
   title,
   description,
   align = "center",
   className,
 }: {
   badge?: string;
+  badgeIcon?: LucideIcon;
+  badgeVariant?: "primary" | "emerald" | "amber" | "red" | "sky";
   title: string;
   description?: string;
   align?: "left" | "center";
@@ -22,15 +28,15 @@ export function SectionHeading({
       )}
     >
       {badge && (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
+        <SectionBadge icon={badgeIcon} variant={badgeVariant} className="mb-4">
           {badge}
-        </p>
+        </SectionBadge>
       )}
-      <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+      <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-lg text-muted">{description}</p>
+        <p className="mt-4 text-lg leading-relaxed text-muted">{description}</p>
       )}
     </div>
   );

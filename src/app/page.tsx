@@ -1,4 +1,6 @@
+import { preload } from "react-dom";
 import { getSiteData } from "@/lib/data";
+import { flowstepImages } from "@/lib/flowstep-assets";
 import { HeroSection } from "@/components/sections/HeroSection";
 import {
   ClientLogosSection,
@@ -15,6 +17,7 @@ import { AuditReportSection } from "@/components/sections/premium/AuditReportSec
 import { PremiumTestimonialsSection } from "@/components/sections/premium/PremiumTestimonialsSection";
 
 export default async function HomePage() {
+  preload(flowstepImages.hero.dentalDesktop, { as: "image", fetchPriority: "high" });
   const data = await getSiteData();
 
   return (

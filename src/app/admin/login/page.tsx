@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
       <Container className="max-w-md">
         <Card>
           <div className="text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-lg font-bold text-primary-foreground">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-lg font-bold text-white">
               DS
             </div>
             <h1 className="mt-4 text-2xl font-bold text-foreground">Admin Login</h1>

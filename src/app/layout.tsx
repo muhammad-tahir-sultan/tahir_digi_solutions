@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased">
+      <body suppressHydrationWarning className="min-h-full flex flex-col antialiased">
         <ThemeProvider>
           <JsonLd data={[organizationJsonLd(), localBusinessJsonLd()]} />
           <Header />

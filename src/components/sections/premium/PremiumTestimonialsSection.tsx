@@ -1,18 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Quote } from "lucide-react";
+import { ArrowRight, Home, Quote, Scale, Star, Stethoscope } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { getIndustryKey, industryGradients } from "@/components/illustrations/IndustryIllustrations";
 import type { Testimonial } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-function Avatar({ name }: { name: string }) {
-  const initials = name
+const industryStyles: Record<string, { bg: string; text: string; icon: typeof Stethoscope }> = {
+  Dentists: { bg: "bg-primary/15 text-emerald-400", text: "text-emerald-400", icon: Stethoscope },
+  "Law Firms": { bg: "bg-amber-400/15 text-amber-400", text: "text-amber-400", icon: Scale },
+  "Real Estate": { bg: "bg-emerald-500/15 text-emerald-400", text: "text-emerald-400", icon: Home },
+  "Real Estate Agencies": { bg: "bg-emerald-500/15 text-emerald-400", text: "text-emerald-400", icon: Home },
+  Accounting: { bg: "bg-emerald-500/15 text-emerald-400", text: "text-emerald-400", icon: Stethoscope },
+  "Accounting Firms": { bg: "bg-emerald-500/15 text-emerald-400", text: "text-emerald-400", icon: Stethoscope },
+};
+
+const avatarColors = ["bg-primary", "bg-amber-400", "bg-emerald-500"];
+
+function TestimonialCard({ item, index }: { item: Testimonial; index: number }) {
+  const style = industryStyles[item.industry] ?? industryStyles.Dentists;
+  const Icon = style.icon;
+  const initials = item.name
     .split(" ")
     .map((n) => n[0])
     .join("")
@@ -20,68 +30,43 @@ function Avatar({ name }: { name: string }) {
     .toUpperCase();
 
   return (
-    <div
-      className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-blue-700 text-sm font-bold text-white shadow-md"
-      aria-hidden="true"
-    >
-      {initials}
-    </div>
-  );
-}
-
-function CompanyLogo({ business }: { business: string }) {
-  const words = business.split(" ");
-  const abbr =
-    words.length > 1
-      ? words.slice(0, 2).map((w) => w[0]).join("")
-      : business.slice(0, 3);
-
-  return (
-    <div className="flex h-8 items-center rounded-md border border-border bg-secondary/80 px-2.5">
-      <span className="text-xs font-bold tracking-wide text-muted uppercase">{abbr}</span>
-    </div>
-  );
-}
-
-function TestimonialCard({ item, index }: { item: Testimonial; index: number }) {
-  const industryKey = getIndustryKey(item.industry);
-  const gradient = industryGradients[industryKey];
-
-  return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ delay: (index % 3) * 0.1, duration: 0.45 }}
-      whileHover={{ y: -6 }}
-      className="glass-strong relative flex flex-col overflow-hidden rounded-2xl"
+      className="flow-card border-primary/30 p-6 shadow-[0_8px_28px_rgba(0,0,0,0.35)]"
     >
-      <div className={cn("h-1.5 w-full bg-gradient-to-r", gradient)} aria-hidden="true" />
-
-      <div className="flex flex-1 flex-col p-6">
-        <Quote className="h-8 w-8 text-primary/20" aria-hidden="true" />
-
-        <div className="mt-2 flex gap-0.5" aria-label={`${item.rating} out of 5 stars`}>
-          {Array.from({ length: item.rating }).map((_, i) => (
-            <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" aria-hidden="true" />
-          ))}
-        </div>
-
-        <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted">
-          &ldquo;{item.review}&rdquo;
-        </blockquote>
-
-        <div className="mt-6 flex items-center justify-between border-t border-border pt-5">
-          <div className="flex items-center gap-3">
-            <Avatar name={item.name} />
-            <div>
-              <p className="font-semibold text-foreground">{item.name}</p>
-              <CompanyLogo business={item.business} />
-            </div>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div
+            className={cn(
+              "flex h-11 w-11 items-center justify-center rounded-full text-sm font-bold text-white",
+              avatarColors[index % avatarColors.length]
+            )}
+          >
+            {initials}
           </div>
-          <Badge className="shrink-0">{item.industry}</Badge>
+          <div>
+            <p className="text-sm font-bold text-foreground">{item.name}</p>
+            <p className="text-xs text-muted">{item.business}</p>
+          </div>
         </div>
+        <span className={cn("inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide", style.bg)}>
+          <Icon className="h-3 w-3" aria-hidden="true" />
+          {item.industry.split(" ")[0]}
+        </span>
       </div>
+
+      <div className="mt-4 flex gap-0.5 text-amber-400" aria-label={`${item.rating} out of 5 stars`}>
+        {Array.from({ length: item.rating }).map((_, i) => (
+          <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
+        ))}
+      </div>
+
+      <blockquote className="mt-4 text-sm italic leading-relaxed text-zinc-300">
+        &ldquo;{item.review}&rdquo;
+      </blockquote>
     </motion.article>
   );
 }
@@ -106,14 +91,19 @@ export function PremiumTestimonialsSection({
   const items = showAll ? testimonials : testimonials.slice(0, limit);
 
   return (
-    <section className="relative overflow-hidden py-20">
-      <BackgroundEffects variant="default" />
+    <section className="relative overflow-hidden py-16 sm:py-20">
       <Container className="relative">
         {showHeading && (
-          <SectionHeading badge="Testimonials" title={title} description={description} />
+          <SectionHeading
+            badge="Testimonials"
+            badgeIcon={Quote}
+            badgeVariant="amber"
+            title={title}
+            description={description}
+          />
         )}
 
-        <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ${showHeading ? "mt-12" : ""}`}>
+        <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ${showHeading ? "mt-10" : ""}`}>
           {items.map((item, index) => (
             <TestimonialCard key={item.id} item={item} index={index} />
           ))}

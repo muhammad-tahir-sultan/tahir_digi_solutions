@@ -9,6 +9,14 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/flow_step_UI
+/flow_step_UI/**
+/flow_step_UI/Screen 1/**
+/flow_step_UI/Screen 2/**
+/flow_step_UI/Screen 3/**
+/flow_step_UI/Screen 4/**
+/flow_step_UI/Screen 5/**
+/flow_step_UI/Screen 6/**
 
 # testing
 /coverage

@@ -1,8 +1,18 @@
 "use client";
 
+import {
+  ArrowRight,
+  FileText,
+  LayoutGrid,
+  MousePointerClick,
+  RefreshCw,
+  Search,
+  Star,
+  Store,
+  TrendingUp,
+} from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Star } from "lucide-react";
 import {
   CaseStudyBeforePreview,
   CaseStudyAfterPreview,
@@ -12,6 +22,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { SectionBadge } from "@/components/ui/SectionBadge";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
 import type {
   Service,
@@ -31,29 +42,46 @@ const industryColors: Record<string, string> = {
 };
 
 export function ServicesOverview({ services }: { services: Service[] }) {
+  const serviceIcons = [MousePointerClick, RefreshCw, Store, FileText, TrendingUp, Search];
+  const iconBgs = [
+    "bg-primary/20 text-primary",
+    "bg-primary/20 text-emerald-400",
+    "bg-emerald-500/20 text-emerald-400",
+    "bg-amber-400/15 text-amber-400",
+    "bg-violet-500/20 text-violet-400",
+    "bg-primary/20 text-primary",
+  ];
+
   return (
-    <section className="py-20">
+    <section className="py-16 sm:py-20">
       <Container>
         <SectionHeading
           badge="Services"
+          badgeIcon={LayoutGrid}
+          badgeVariant="amber"
           title="Everything You Need to Grow Online"
           description="Comprehensive website solutions designed for local business growth."
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.slice(0, 6).map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <Card hover className="h-full">
-                <h3 className="font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-2 text-sm text-muted line-clamp-3">{service.description}</p>
-              </Card>
-            </motion.div>
-          ))}
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.slice(0, 6).map((service, index) => {
+            const Icon = serviceIcons[index % serviceIcons.length];
+            return (
+              <motion.article
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="flow-card p-6 transition-transform hover:-translate-y-1"
+              >
+                <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg ${iconBgs[index % iconBgs.length]}`}>
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-base font-bold text-foreground">{service.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted line-clamp-3">{service.description}</p>
+              </motion.article>
+            );
+          })}
         </div>
         <div className="mt-10 text-center">
           <Button href="/services" variant="outline">
@@ -269,24 +297,23 @@ export function TestimonialsPreview({ testimonials }: { testimonials: Testimonia
 
 export function FinalCTA({ content }: { content: SiteContent["cta"] }) {
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative overflow-hidden py-16 sm:py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-blue-700 px-8 py-16 text-center text-white sm:px-16"
+          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-primary via-blue-600 to-sky-500 px-8 py-16 text-center sm:px-16"
         >
-          <BackgroundEffects variant="subtle" />
-          <div className="noise-overlay absolute inset-0 opacity-20" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_60%)]" aria-hidden="true" />
           <div className="relative">
-            <h2 className="text-3xl font-bold sm:text-4xl">{content.title}</h2>
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">{content.title}</h2>
             <p className="mx-auto mt-4 max-w-2xl text-blue-100">{content.subtitle}</p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button
                 href="/free-audit"
                 size="lg"
-                className="bg-white text-primary hover:bg-blue-50"
+                className="bg-white font-semibold text-primary hover:bg-blue-50"
               >
                 {content.primaryCta}
               </Button>
@@ -294,7 +321,7 @@ export function FinalCTA({ content }: { content: SiteContent["cta"] }) {
                 href="/contact"
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10"
+                className="border-white/30 font-semibold text-white hover:bg-white/10"
               >
                 {content.secondaryCta}
               </Button>
@@ -317,7 +344,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden border-b border-border py-16 sm:py-20">
-      <BackgroundEffects variant="hero" />
+      <div className="pointer-events-none absolute right-[-10%] top-[10%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(21,93,252,0.25),transparent_70%)] blur-3xl" />
       <Container className="relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -326,15 +353,15 @@ export function PageHero({
           className="mx-auto max-w-3xl text-center"
         >
           {badge && (
-            <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-wider text-primary backdrop-blur-sm">
+            <SectionBadge variant="primary" className="mb-4">
               {badge}
-            </p>
+            </SectionBadge>
           )}
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             {title}
           </h1>
           {description && (
-            <p className="mt-4 text-lg text-muted">{description}</p>
+            <p className="mt-4 text-lg leading-relaxed text-muted">{description}</p>
           )}
         </motion.div>
       </Container>
