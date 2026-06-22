@@ -294,11 +294,17 @@ export function PageHero({
   description?: string;
 }) {
   return (
-    <section className="border-b border-border bg-gradient-to-b from-primary/5 to-background py-16 sm:py-20">
-      <Container>
-        <div className="mx-auto max-w-3xl text-center">
+    <section className="relative overflow-hidden border-b border-border py-16 sm:py-20">
+      <BackgroundEffects variant="hero" />
+      <Container className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center"
+        >
           {badge && (
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
+            <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-semibold uppercase tracking-wider text-primary backdrop-blur-sm">
               {badge}
             </p>
           )}
@@ -308,7 +314,7 @@ export function PageHero({
           {description && (
             <p className="mt-4 text-lg text-muted">{description}</p>
           )}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

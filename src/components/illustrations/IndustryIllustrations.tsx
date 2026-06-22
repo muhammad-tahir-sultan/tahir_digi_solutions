@@ -116,11 +116,3 @@ export const industryGradients: Record<IndustryKey, string> = {
   accounting: "from-amber-500 via-amber-600 to-orange-700",
   physiotherapy: "from-cyan-500 via-cyan-600 to-blue-600",
 };
-
-export const industryPreviewColors: Record<IndustryKey, { bg: string; accent: string; nav: string }> = {
-  dentists: { bg: "bg-sky-50", accent: "bg-blue-500", nav: "bg-white" },
-  "law-firms": { bg: "bg-slate-100", accent: "bg-slate-700", nav: "bg-slate-800" },
-  "real-estate": { bg: "bg-emerald-50", accent: "bg-emerald-600", nav: "bg-white" },
-  accounting: { bg: "bg-amber-50", accent: "bg-amber-600", nav: "bg-white" },
-  physiotherapy: { bg: "bg-cyan-50", accent: "bg-cyan-500", nav: "bg-white" },
-};

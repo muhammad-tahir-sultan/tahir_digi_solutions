@@ -6,7 +6,13 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
 import { GrowthIllustration } from "@/components/illustrations/IndustryIllustrations";
 
-const steps = [
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export const defaultProcessSteps: ProcessStep[] = [
   {
     number: "01",
     title: "Discovery",
@@ -39,20 +45,69 @@ const steps = [
   },
 ];
 
-export function ProcessTimelineSection() {
+export const detailedProcessSteps: ProcessStep[] = [
+  {
+    number: "01",
+    title: "Discovery",
+    description:
+      "We learn about your business, goals, target customers, and current online presence through a detailed discovery call.",
+  },
+  {
+    number: "02",
+    title: "Planning",
+    description:
+      "We create a strategic plan including site structure, conversion paths, content requirements, and project timeline.",
+  },
+  {
+    number: "03",
+    title: "Design",
+    description:
+      "Our team creates custom designs focused on your brand, industry, and conversion goals for your approval.",
+  },
+  {
+    number: "04",
+    title: "Development",
+    description:
+      "We build your website with clean code, mobile optimization, SEO foundations, and performance best practices.",
+  },
+  {
+    number: "05",
+    title: "Launch",
+    description:
+      "After thorough testing, we launch your site with analytics, forms, and tracking configured for success.",
+  },
+  {
+    number: "06",
+    title: "Support",
+    description:
+      "We provide post-launch support, performance monitoring, and ongoing optimization to keep your site growing.",
+  },
+];
+
+export function ProcessTimelineSection({
+  steps = defaultProcessSteps,
+  showHeading = true,
+  badge = "Our Process",
+  title = "From First Call to First Lead",
+  description = "A proven six-step process that delivers premium websites on time and on strategy.",
+}: {
+  steps?: ProcessStep[];
+  showHeading?: boolean;
+  badge?: string;
+  title?: string;
+  description?: string;
+}) {
   const reduceMotion = useReducedMotion();
 
   return (
     <section className="relative overflow-hidden border-y border-border bg-secondary/30 py-20">
       <BackgroundEffects variant="subtle" />
       <Container className="relative">
-        <SectionHeading
-          badge="Our Process"
-          title="From First Call to First Lead"
-          description="A proven six-step process that delivers premium websites on time and on strategy."
-        />
+        {showHeading && (
+          <SectionHeading badge={badge} title={title} description={description} />
+        )}
 
-        <div className="relative mx-auto mt-16 max-w-3xl">
+        <div className={`relative mx-auto max-w-3xl ${showHeading ? "mt-16" : ""}`}>
           <div
             className="absolute left-8 top-0 hidden h-full w-px bg-gradient-to-b from-primary via-primary/50 to-transparent md:block"
             aria-hidden="true"
@@ -87,10 +142,7 @@ export function ProcessTimelineSection() {
                   )}
                 </motion.div>
 
-                <motion.div
-                  whileHover={{ x: 4 }}
-                  className="glass-strong flex-1 rounded-2xl p-6"
-                >
+                <motion.div whileHover={{ x: 4 }} className="glass-strong flex-1 rounded-2xl p-6">
                   <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
                   <p className="mt-2 text-sm text-muted">{step.description}</p>
                 </motion.div>

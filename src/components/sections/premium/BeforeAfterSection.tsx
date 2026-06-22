@@ -6,49 +6,10 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
 import { MotionSection } from "@/components/visual/MotionSection";
-
-function BeforePreview() {
-  return (
-    <div className="flex h-full flex-col bg-slate-200 p-4" aria-hidden="true">
-      <div className="mb-3 h-4 w-full bg-slate-300" />
-      <div className="mb-2 h-2 w-3/4 bg-slate-300" />
-      <div className="mb-2 h-2 w-full bg-slate-300" />
-      <div className="mb-4 h-2 w-5/6 bg-slate-300" />
-      <div className="grid flex-1 grid-cols-2 gap-2">
-        <div className="bg-slate-300" />
-        <div className="bg-slate-300" />
-      </div>
-      <div className="mt-3 text-center text-xs text-slate-500">Outdated · Slow · Not Mobile-Friendly</div>
-    </div>
-  );
-}
-
-function AfterPreview() {
-  return (
-    <div className="flex h-full flex-col bg-gradient-to-br from-blue-50 to-indigo-50 p-4" aria-hidden="true">
-      <div className="mb-3 flex items-center justify-between">
-        <div className="h-3 w-16 rounded bg-blue-600" />
-        <div className="flex gap-1">
-          <div className="h-2 w-6 rounded bg-blue-200" />
-          <div className="h-2 w-6 rounded bg-blue-200" />
-        </div>
-      </div>
-      <div className="mb-2 h-3 w-2/3 rounded bg-blue-900/80" />
-      <div className="mb-1 h-2 w-full rounded bg-blue-200/80" />
-      <div className="mb-4 h-2 w-4/5 rounded bg-blue-200/60" />
-      <div className="grid flex-1 grid-cols-3 gap-2">
-        <div className="rounded-lg bg-white shadow-sm" />
-        <div className="rounded-lg bg-white shadow-sm" />
-        <div className="rounded-lg bg-white shadow-sm" />
-      </div>
-      <div className="mt-3 flex justify-center">
-        <div className="rounded-full bg-blue-600 px-4 py-1 text-[10px] font-semibold text-white">
-          Book Appointment
-        </div>
-      </div>
-    </div>
-  );
-}
+import {
+  BeforeWebsiteScene,
+  AfterWebsiteScene,
+} from "@/components/mockups/WebsitePreviewScenes";
 
 export function BeforeAfterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,13 +61,13 @@ export function BeforeAfterSection() {
             aria-label="Before and after website comparison. Use arrow keys or drag the slider."
           >
             <div className="absolute inset-0">
-              <AfterPreview />
+              <AfterWebsiteScene industry="dentists" />
             </div>
             <div
               className="absolute inset-0 overflow-hidden"
               style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
             >
-              <BeforePreview />
+              <BeforeWebsiteScene />
             </div>
 
             <div

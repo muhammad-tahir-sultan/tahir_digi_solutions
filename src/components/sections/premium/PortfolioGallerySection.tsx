@@ -8,41 +8,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import {
-  MacbookMockup,
-  BrowserMockup,
-  MobileMockup,
-  ScreenshotFrame,
-} from "@/components/mockups/DeviceMockups";
+import { MacbookMockup, MobileMockup, WebsiteShowcase } from "@/components/mockups/DeviceMockups";
 import { getIndustryKey } from "@/components/illustrations/IndustryIllustrations";
 import type { PortfolioItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
-
-const mockupTypes = ["macbook", "browser", "mobile", "screenshot"] as const;
-
-function PortfolioMockup({
-  type,
-  industry,
-  title,
-}: {
-  type: (typeof mockupTypes)[number];
-  industry: string;
-  title: string;
-}) {
-  const key = getIndustryKey(industry);
-  const props = { industry: key, className: "w-full" };
-
-  switch (type) {
-    case "macbook":
-      return <MacbookMockup {...props} />;
-    case "browser":
-      return <BrowserMockup {...props} title={title} />;
-    case "mobile":
-      return <MobileMockup {...props} className="mx-auto max-w-[140px]" />;
-    case "screenshot":
-      return <ScreenshotFrame {...props} label={title} />;
-  }
-}
 
 export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioItem[] }) {
   const items = portfolio.slice(0, 4);
@@ -57,10 +26,11 @@ export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioIte
           description="Explore demo projects across every industry we serve — from concept to conversion-ready design."
         />
 
-        <div className="mt-12 space-y-16">
+        <div className="mt-12 space-y-20">
           {items.map((item, index) => {
-            const mockupType = mockupTypes[index % mockupTypes.length];
+            const industryKey = getIndustryKey(item.industry);
             const isReversed = index % 2 === 1;
+            const useMacbook = index % 2 === 0;
 
             return (
               <motion.div
@@ -74,16 +44,27 @@ export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioIte
                   isReversed && "lg:[direction:rtl]"
                 )}
               >
-                <div className={cn(isReversed && "lg:[direction:ltr]")}>
+                <div className={cn("relative", isReversed && "lg:[direction:ltr]")}>
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.3 }}
                     className="relative"
                   >
-                    <PortfolioMockup type={mockupType} industry={item.industry} title={item.title} />
-                    <div className="absolute -bottom-3 -right-3 rounded-lg bg-primary px-3 py-1 text-xs font-semibold capitalize text-white shadow-lg">
-                      {mockupType === "screenshot" ? "Full Screen" : mockupType}
-                    </div>
+                    {useMacbook ? (
+                      <MacbookMockup industry={industryKey} />
+                    ) : (
+                      <WebsiteShowcase industry={industryKey} title={item.title} />
+                    )}
+
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 }}
+                      className="absolute -right-2 top-6 z-20 w-[28%] min-w-[90px] max-w-[120px] sm:-right-4"
+                    >
+                      <MobileMockup industry={industryKey} />
+                    </motion.div>
                   </motion.div>
                 </div>
 
