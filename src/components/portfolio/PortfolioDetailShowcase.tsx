@@ -7,12 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import {
-  MacbookMockup,
-  BrowserMockup,
-  MobileMockup,
-  ScreenshotFrame,
-} from "@/components/mockups/DeviceMockups";
+import { DevicePairShowcase, BrowserMockup, ScreenshotFrame } from "@/components/mockups/DeviceMockups";
 import {
   getIndustryKey,
   industryGradients,
@@ -63,12 +58,8 @@ export function PortfolioDetailShowcase({ item }: { item: PortfolioItem }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="relative"
             >
-              <div className="absolute -right-4 top-8 z-20 w-24 sm:w-28">
-                <MobileMockup industry={industryKey} />
-              </div>
-              <MacbookMockup industry={industryKey} className="relative z-10" />
+              <DevicePairShowcase industry={industryKey} title={item.title} />
             </motion.div>
           </div>
         </Container>

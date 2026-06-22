@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { MacbookMockup, MobileMockup, WebsiteShowcase } from "@/components/mockups/DeviceMockups";
+import { DevicePairShowcase } from "@/components/mockups/DeviceMockups";
 import { getIndustryKey } from "@/components/illustrations/IndustryIllustrations";
 import type { PortfolioItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -26,11 +26,10 @@ export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioIte
           description="Explore demo projects across every industry we serve — from concept to conversion-ready design."
         />
 
-        <div className="mt-12 space-y-20">
+        <div className="mt-12 space-y-24">
           {items.map((item, index) => {
             const industryKey = getIndustryKey(item.industry);
             const isReversed = index % 2 === 1;
-            const useMacbook = index % 2 === 0;
 
             return (
               <motion.div
@@ -40,32 +39,12 @@ export function PortfolioGallerySection({ portfolio }: { portfolio: PortfolioIte
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5 }}
                 className={cn(
-                  "grid items-center gap-8 lg:grid-cols-2 lg:gap-12",
+                  "grid items-center gap-10 lg:grid-cols-2 lg:gap-14",
                   isReversed && "lg:[direction:rtl]"
                 )}
               >
-                <div className={cn("relative", isReversed && "lg:[direction:ltr]")}>
-                  <motion.div
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ duration: 0.3 }}
-                    className="relative"
-                  >
-                    {useMacbook ? (
-                      <MacbookMockup industry={industryKey} />
-                    ) : (
-                      <WebsiteShowcase industry={industryKey} title={item.title} />
-                    )}
-
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                      className="absolute -right-2 top-6 z-20 w-[28%] min-w-[90px] max-w-[120px] sm:-right-4"
-                    >
-                      <MobileMockup industry={industryKey} />
-                    </motion.div>
-                  </motion.div>
+                <div className={cn(isReversed && "lg:[direction:ltr]")}>
+                  <DevicePairShowcase industry={industryKey} title={item.title} />
                 </div>
 
                 <div className={cn(isReversed && "lg:[direction:ltr]")}>

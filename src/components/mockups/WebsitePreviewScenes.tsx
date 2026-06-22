@@ -9,333 +9,453 @@ export const industryDomains: Record<IndustryKey, string> = {
   physiotherapy: "activelifephysio.com",
 };
 
-function NavBar({
-  logo,
-  links,
-  cta,
-  dark = false,
-  mobile = false,
-}: {
-  logo: React.ReactNode;
-  links: string[];
+type Variant = "desktop" | "mobile";
+
+interface Theme {
+  navBg: string;
+  navText: string;
   cta: string;
-  dark?: boolean;
-  mobile?: boolean;
-}) {
+  hero: string;
+  accent: string;
+  logo: string;
+  body: string;
+}
+
+const themes: Record<IndustryKey, Theme> = {
+  dentists: {
+    navBg: "bg-white border-b border-blue-100",
+    navText: "text-slate-600",
+    cta: "bg-blue-600 text-white",
+    hero: "from-blue-600 via-blue-700 to-indigo-800",
+    accent: "text-blue-600",
+    logo: "text-blue-700",
+    body: "bg-slate-50",
+  },
+  "law-firms": {
+    navBg: "bg-slate-900",
+    navText: "text-slate-300",
+    cta: "bg-amber-500 text-slate-900",
+    hero: "from-slate-800 via-slate-900 to-black",
+    accent: "text-amber-400",
+    logo: "text-amber-400",
+    body: "bg-slate-100",
+  },
+  "real-estate": {
+    navBg: "bg-white border-b border-emerald-100",
+    navText: "text-slate-600",
+    cta: "bg-emerald-600 text-white",
+    hero: "from-emerald-600 via-emerald-700 to-teal-800",
+    accent: "text-emerald-600",
+    logo: "text-emerald-700",
+    body: "bg-white",
+  },
+  accounting: {
+    navBg: "bg-white border-b border-amber-100",
+    navText: "text-slate-600",
+    cta: "bg-amber-600 text-white",
+    hero: "from-amber-600 via-orange-600 to-amber-800",
+    accent: "text-amber-700",
+    logo: "text-amber-800",
+    body: "bg-amber-50/50",
+  },
+  physiotherapy: {
+    navBg: "bg-white border-b border-cyan-100",
+    navText: "text-slate-600",
+    cta: "bg-cyan-600 text-white",
+    hero: "from-cyan-500 via-cyan-600 to-blue-700",
+    accent: "text-cyan-600",
+    logo: "text-cyan-700",
+    body: "bg-cyan-50/40",
+  },
+};
+
+interface IndustryContent {
+  brand: string;
+  icon: string;
+  headline: string;
+  sub: string;
+  cta: string;
+  nav: string[];
+  services: { label: string; icon: string }[];
+  stats: { val: string; label: string }[];
+  trust: string;
+  footer: string;
+}
+
+const content: Record<IndustryKey, IndustryContent> = {
+  dentists: {
+    brand: "Bright Smile Dental",
+    icon: "🦷",
+    headline: "Your Family's Trusted Dental Care",
+    sub: "Cosmetic & general dentistry · Same-week appointments",
+    cta: "Book Appointment",
+    nav: ["Services", "Our Team", "Reviews", "Contact"],
+    services: [
+      { label: "Teeth Cleaning", icon: "✨" },
+      { label: "Cosmetic", icon: "💎" },
+      { label: "Emergency", icon: "🚨" },
+      { label: "Invisalign", icon: "😁" },
+    ],
+    stats: [
+      { val: "4.9★", label: "Rating" },
+      { val: "500+", label: "Patients" },
+      { val: "15yr", label: "Experience" },
+    ],
+    trust: "★★★★★ Loved by local families",
+    footer: "Mon–Sat 8am–6pm · (555) 234-5678",
+  },
+  "law-firms": {
+    brand: "Rodriguez & Associates",
+    icon: "⚖",
+    headline: "Fighting For Your Rights",
+    sub: "Personal injury · Family law · Criminal defense",
+    cta: "Free Consultation",
+    nav: ["Practice Areas", "Attorneys", "Results", "Contact"],
+    services: [
+      { label: "Personal Injury", icon: "📋" },
+      { label: "Family Law", icon: "👨‍👩‍👧" },
+      { label: "Criminal Defense", icon: "🛡" },
+      { label: "Immigration", icon: "🌎" },
+    ],
+    stats: [
+      { val: "850+", label: "Cases Won" },
+      { val: "25+", label: "Years" },
+      { val: "5.0★", label: "Rating" },
+    ],
+    trust: "Bar Certified · Confidential consultations",
+    footer: "Available 24/7 for emergencies",
+  },
+  "real-estate": {
+    brand: "Chen Realty Group",
+    icon: "🏠",
+    headline: "Find Your Dream Home",
+    sub: "127 active listings · Top-rated local agent",
+    cta: "Get Free Valuation",
+    nav: ["Listings", "Neighborhoods", "About", "Contact"],
+    services: [
+      { label: "$425K", icon: "3bd" },
+      { label: "$680K", icon: "4bd" },
+      { label: "$310K", icon: "2bd" },
+      { label: "$550K", icon: "3bd" },
+    ],
+    stats: [
+      { val: "127", label: "Listings" },
+      { val: "$42M", label: "Sold" },
+      { val: "98%", label: "Satisfied" },
+    ],
+    trust: "Top 1% agent in the region",
+    footer: "Free home valuation · No obligation",
+  },
+  accounting: {
+    brand: "Thompson & Co. CPA",
+    icon: "📊",
+    headline: "Tax Season Made Simple",
+    sub: "Business & personal accounting · CPA certified",
+    cta: "Schedule Consultation",
+    nav: ["Services", "About", "Resources", "Contact"],
+    services: [
+      { label: "Tax Preparation", icon: "📑" },
+      { label: "Bookkeeping", icon: "📒" },
+      { label: "Payroll", icon: "💰" },
+      { label: "Advisory", icon: "📈" },
+    ],
+    stats: [
+      { val: "300+", label: "Clients" },
+      { val: "20+", label: "Years" },
+      { val: "CPA", label: "Certified" },
+    ],
+    trust: "Trusted by local businesses since 2004",
+    footer: "Tax deadline support · Secure portal",
+  },
+  physiotherapy: {
+    brand: "Active Life Physio",
+    icon: "💪",
+    headline: "Move Better. Live Better.",
+    sub: "Sports rehab · Pain relief · Wellness programs",
+    cta: "Book Your Session",
+    nav: ["Treatments", "Our Team", "Insurance", "Book"],
+    services: [
+      { label: "Sports Rehab", icon: "🏃" },
+      { label: "Back Pain", icon: "🔄" },
+      { label: "Massage", icon: "💆" },
+      { label: "Post-Op", icon: "🏥" },
+    ],
+    stats: [
+      { val: "4.9★", label: "Rating" },
+      { val: "2k+", label: "Patients" },
+      { val: "Same Week", label: "Booking" },
+    ],
+    trust: "Direct insurance billing available",
+    footer: "Mon–Fri 7am–7pm · Sat 9am–2pm",
+  },
+};
+
+function Stars() {
   return (
-    <div
-      className={cn(
-        "flex items-center justify-between px-3 py-2",
-        dark ? "bg-slate-900 text-white" : "border-b border-black/5 bg-white"
-      )}
-    >
-      <div className="shrink-0 font-bold">{logo}</div>
-      {!mobile && (
-        <div className="hidden items-center gap-3 sm:flex">
-          {links.map((link) => (
-            <span
-              key={link}
-              className={cn("text-[9px]", dark ? "text-slate-300" : "text-slate-500")}
-            >
-              {link}
-            </span>
-          ))}
-          <span
-            className={cn(
-              "rounded-full px-2 py-0.5 text-[8px] font-semibold",
-              dark ? "bg-amber-500 text-slate-900" : "bg-blue-600 text-white"
-            )}
-          >
-            {cta}
+    <span className="text-amber-400">
+      {"★★★★★"}
+    </span>
+  );
+}
+
+function DesktopNav({ industry, t }: { industry: IndustryKey; t: Theme }) {
+  const c = content[industry];
+  return (
+    <div className={cn("flex items-center justify-between px-4 py-2.5", t.navBg)}>
+      <span className={cn("text-[11px] font-bold", t.logo)}>
+        {c.icon} {c.brand.split(" ")[0]} {c.brand.split(" ")[1] ?? ""}
+      </span>
+      <div className="flex items-center gap-3">
+        {c.nav.map((link) => (
+          <span key={link} className={cn("text-[9px] font-medium", t.navText)}>
+            {link}
           </span>
-        </div>
-      )}
-      {mobile && (
-        <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[7px] font-semibold text-white">
-          {cta}
+        ))}
+        <span className={cn("rounded-full px-2.5 py-1 text-[8px] font-bold", t.cta)}>
+          {c.cta}
         </span>
-      )}
+      </div>
     </div>
   );
 }
 
-function StarRating({ className }: { className?: string }) {
+function MobileNav({ industry, t }: { industry: IndustryKey; t: Theme }) {
+  const c = content[industry];
   return (
-    <div className={cn("flex items-center gap-0.5", className)}>
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 12 12" className="h-2 w-2 fill-amber-400">
-          <path d="M6 1l1.5 3.5H11l-3 2.5 1.2 3.5L6 8.5 2.8 10.5 4 7 1 4.5h3.5z" />
-        </svg>
-      ))}
-      <span className="ml-1 text-[8px] font-semibold text-slate-600">4.9</span>
-    </div>
-  );
-}
-
-function DentalPreview({ mobile }: { mobile?: boolean }) {
-  return (
-    <div className="flex h-full flex-col bg-slate-50">
-      <NavBar
-        mobile={mobile}
-        logo={<span className="text-[10px] text-blue-700">🦷 Bright Smile</span>}
-        links={["Services", "Team", "Reviews"]}
-        cta="Book Now"
-      />
-      <div className="relative flex-1 overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 px-3 py-3">
-        <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-white/10" />
-        <div className="absolute bottom-2 right-2 h-12 w-12 rounded-full bg-white/5" />
-        <p className="text-[11px] font-bold leading-tight text-white sm:text-sm">
-          Your Family&apos;s
-          <br />
-          Trusted Dental Care
-        </p>
-        <p className="mt-1 text-[8px] text-blue-100">Cosmetic &amp; General Dentistry</p>
-        <div className="mt-2 inline-block rounded-full bg-white px-2.5 py-1 text-[8px] font-bold text-blue-700">
-          Book Appointment →
+    <div className={cn("flex items-center justify-between px-3 py-2", t.navBg)}>
+      <span className={cn("text-[9px] font-bold", t.logo)}>
+        {c.icon} {c.brand.split(" ")[0]}
+      </span>
+      <div className="flex items-center gap-2">
+        <span className={cn("rounded-full px-2 py-0.5 text-[7px] font-bold", t.cta)}>
+          {c.cta.split(" ")[0]}
+        </span>
+        <div className="flex flex-col gap-0.5">
+          <span className="h-0.5 w-3.5 rounded bg-slate-400" />
+          <span className="h-0.5 w-3.5 rounded bg-slate-400" />
+          <span className="h-0.5 w-2.5 rounded bg-slate-400" />
         </div>
-        {!mobile && (
-          <div className="mt-3 grid grid-cols-3 gap-1.5">
-            {["Cleaning", "Whitening", "Emergency"].map((s) => (
-              <div key={s} className="rounded-lg bg-white/15 px-1 py-1.5 text-center backdrop-blur-sm">
-                <div className="mx-auto mb-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-white/25 text-[8px]">
-                  ✓
-                </div>
-                <p className="text-[7px] font-medium text-white">{s}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="flex items-center justify-between bg-white px-3 py-1.5">
-        <StarRating />
-        <span className="text-[7px] text-slate-400">500+ Happy Patients</span>
       </div>
     </div>
   );
 }
 
-function LawFirmPreview({ mobile }: { mobile?: boolean }) {
-  return (
-    <div className="flex h-full flex-col bg-slate-100">
-      <NavBar
-        dark
-        mobile={mobile}
-        logo={<span className="text-[9px] text-amber-400">⚖ Rodriguez Law</span>}
-        links={["Practice Areas", "Attorneys", "Results"]}
-        cta="Free Consult"
-      />
-      <div className="relative flex-1 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 px-3 py-3">
-        <div className="absolute inset-0 opacity-20">
-          <svg viewBox="0 0 200 100" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
-            <line x1="0" y1="80" x2="200" y2="20" stroke="#fbbf24" strokeWidth="0.5" />
-            <line x1="0" y1="60" x2="200" y2="40" stroke="#fbbf24" strokeWidth="0.5" />
-          </svg>
-        </div>
-        <p className="relative text-[11px] font-bold leading-tight text-white">
-          Fighting For
-          <br />
-          <span className="text-amber-400">Your Rights</span>
-        </p>
-        <p className="relative mt-1 text-[8px] text-slate-400">Personal Injury · Family Law · Criminal Defense</p>
-        <div className="relative mt-2 inline-block rounded border border-amber-500/50 bg-amber-500/10 px-2.5 py-1 text-[8px] font-semibold text-amber-400">
-          Free Consultation →
-        </div>
-        {!mobile && (
-          <div className="relative mt-3 grid grid-cols-3 gap-1">
-            {[
-              { label: "Cases Won", val: "850+" },
-              { label: "Years Exp.", val: "25+" },
-              { label: "Rating", val: "5.0★" },
-            ].map((stat) => (
-              <div key={stat.label} className="rounded bg-white/5 px-1 py-1 text-center">
-                <p className="text-[9px] font-bold text-amber-400">{stat.val}</p>
-                <p className="text-[6px] text-slate-500">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="bg-slate-900 px-3 py-1.5 text-[7px] text-slate-500">
-        ★ Bar Certified · Confidential Consultations
-      </div>
-    </div>
-  );
-}
+function DesktopPreview({ industry }: { industry: IndustryKey }) {
+  const t = themes[industry];
+  const c = content[industry];
+  const isRealEstate = industry === "real-estate";
+  const isLaw = industry === "law-firms";
 
-function RealEstatePreview({ mobile }: { mobile?: boolean }) {
   return (
-    <div className="flex h-full flex-col bg-white">
-      <NavBar
-        mobile={mobile}
-        logo={<span className="text-[10px] text-emerald-700">🏠 Chen Realty</span>}
-        links={["Listings", "Neighborhoods", "About"]}
-        cta="Get Valuation"
-      />
-      <div className="relative flex-1 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-700" />
-        <svg viewBox="0 0 200 80" className="absolute inset-0 h-full w-full opacity-30" preserveAspectRatio="xMidYMid slice">
-          <rect x="60" y="30" width="80" height="50" fill="white" opacity="0.3" />
-          <polygon points="100,10 50,35 150,35" fill="white" opacity="0.4" />
-          <rect x="85" y="50" width="15" height="30" fill="white" opacity="0.2" />
-          <rect x="110" y="45" width="12" height="12" fill="white" opacity="0.2" />
-        </svg>
-        <div className="relative px-3 py-3">
-          <p className="text-[11px] font-bold text-white">Find Your Dream Home</p>
-          <p className="text-[8px] text-emerald-100">127 Active Listings · Local Expert</p>
-          <div className="mt-2 flex gap-1">
-            <div className="flex-1 rounded bg-white/20 px-2 py-1 text-[7px] text-white backdrop-blur-sm">
-              🔍 Search listings...
+    <div className={cn("flex h-full flex-col", t.body)}>
+      <DesktopNav industry={industry} t={t} />
+
+      {/* Hero */}
+      <div className={cn("relative bg-gradient-to-br px-4 py-4", t.hero)}>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white" />
+          <div className="absolute bottom-0 left-1/4 h-20 w-20 rounded-full bg-white" />
+        </div>
+        <div className="relative grid grid-cols-5 gap-3">
+          <div className="col-span-3">
+            <p className="text-[13px] font-bold leading-snug text-white">{c.headline}</p>
+            <p className="mt-1 text-[9px] text-white/75">{c.sub}</p>
+            <div className={cn("mt-2.5 inline-flex rounded-full px-3 py-1 text-[9px] font-bold shadow-lg", isLaw ? "bg-amber-500 text-slate-900" : "bg-white text-slate-800")}>
+              {c.cta} →
             </div>
-            <div className="rounded bg-white px-2 py-1 text-[7px] font-bold text-emerald-700">Go</div>
           </div>
-        </div>
-        {!mobile && (
-          <div className="relative grid grid-cols-3 gap-1 px-3 pb-2">
-            {[
-              { price: "$425K", beds: "3 bed" },
-              { price: "$680K", beds: "4 bed" },
-              { price: "$310K", beds: "2 bed" },
-            ].map((home) => (
-              <div key={home.price} className="overflow-hidden rounded-md bg-white shadow-sm">
-                <div className="h-6 bg-gradient-to-br from-emerald-200 to-teal-300" />
-                <div className="p-1">
-                  <p className="text-[8px] font-bold text-emerald-800">{home.price}</p>
-                  <p className="text-[6px] text-slate-500">{home.beds}</p>
+          <div className="col-span-2 flex items-center justify-center">
+            <div className="h-full w-full rounded-lg bg-white/15 p-2 backdrop-blur-sm">
+              {isRealEstate ? (
+                <svg viewBox="0 0 80 60" className="h-full w-full">
+                  <polygon points="40,5 10,30 70,30" fill="white" opacity="0.5" />
+                  <rect x="22" y="30" width="36" height="25" fill="white" opacity="0.35" />
+                  <rect x="34" y="40" width="10" height="15" fill="white" opacity="0.25" />
+                </svg>
+              ) : (
+                <div className="flex h-full flex-col items-center justify-center gap-1">
+                  <span className="text-2xl">{c.icon}</span>
+                  <Stars />
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function AccountingPreview({ mobile }: { mobile?: boolean }) {
-  return (
-    <div className="flex h-full flex-col bg-amber-50">
-      <NavBar
-        mobile={mobile}
-        logo={<span className="text-[10px] text-amber-800">📊 Thompson CPA</span>}
-        links={["Services", "About", "Resources"]}
-        cta="Get Started"
-      />
-      <div className="flex-1 px-3 py-3">
-        <div className="rounded-lg bg-gradient-to-br from-amber-600 to-orange-700 px-3 py-2.5">
-          <p className="text-[11px] font-bold text-white">Tax Season Made Simple</p>
-          <p className="mt-0.5 text-[8px] text-amber-100">Expert accounting for businesses &amp; individuals</p>
-          <div className="mt-2 inline-block rounded bg-white px-2 py-0.5 text-[8px] font-bold text-amber-700">
-            Schedule Consultation
+              )}
+            </div>
           </div>
         </div>
-        {!mobile && (
-          <div className="mt-2 grid grid-cols-2 gap-1.5">
-            {["Tax Prep", "Bookkeeping", "Payroll", "Advisory"].map((svc) => (
-              <div key={svc} className="flex items-center gap-1 rounded-md border border-amber-200 bg-white px-2 py-1.5">
-                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-amber-100 text-[8px]">$</span>
-                <span className="text-[8px] font-medium text-amber-900">{svc}</span>
-              </div>
-            ))}
-          </div>
-        )}
-        <div className="mt-2 flex items-center gap-2 rounded-md border border-amber-200 bg-white px-2 py-1">
-          <span className="rounded bg-amber-600 px-1 py-0.5 text-[6px] font-bold text-white">CPA</span>
-          <span className="text-[7px] text-slate-500">Certified · 20+ Years · 300+ Clients</span>
-        </div>
       </div>
-    </div>
-  );
-}
 
-function PhysiotherapyPreview({ mobile }: { mobile?: boolean }) {
-  return (
-    <div className="flex h-full flex-col bg-cyan-50">
-      <NavBar
-        mobile={mobile}
-        logo={<span className="text-[10px] text-cyan-700">💪 Active Life Physio</span>}
-        links={["Treatments", "Team", "Book"]}
-        cta="Book Session"
-      />
-      <div className="relative flex-1 overflow-hidden bg-gradient-to-br from-cyan-500 to-blue-600 px-3 py-3">
-        <div className="absolute -bottom-4 -right-4 h-16 w-16 rounded-full bg-white/10" />
-        <p className="text-[11px] font-bold leading-tight text-white">
-          Move Better.
-          <br />
-          Live Better.
+      {/* Stats bar */}
+      <div className="grid grid-cols-3 border-b border-black/5 bg-white">
+        {c.stats.map((s) => (
+          <div key={s.label} className="border-r border-black/5 px-2 py-2 text-center last:border-0">
+            <p className={cn("text-[11px] font-bold", t.accent)}>{s.val}</p>
+            <p className="text-[7px] text-slate-500">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Services */}
+      <div className="flex-1 px-4 py-3">
+        <p className="text-[9px] font-bold uppercase tracking-wider text-slate-500">
+          {isRealEstate ? "Featured Listings" : "Our Services"}
         </p>
-        <p className="mt-1 text-[8px] text-cyan-100">Sports · Recovery · Wellness</p>
-        <div className="mt-2 inline-block rounded-full bg-white px-2.5 py-1 text-[8px] font-bold text-cyan-700">
-          Book Your Session →
+        <div className="mt-2 grid grid-cols-4 gap-1.5">
+          {c.services.map((svc) => (
+            <div key={svc.label} className="rounded-lg border border-black/5 bg-white p-1.5 shadow-sm">
+              {isRealEstate ? (
+                <>
+                  <div className="mb-1 h-8 rounded bg-gradient-to-br from-emerald-200 to-teal-300" />
+                  <p className={cn("text-[9px] font-bold", t.accent)}>{svc.label}</p>
+                  <p className="text-[7px] text-slate-400">{svc.icon}</p>
+                </>
+              ) : (
+                <>
+                  <span className="text-sm">{svc.icon}</span>
+                  <p className="mt-0.5 text-[7px] font-medium leading-tight text-slate-700">{svc.label}</p>
+                </>
+              )}
+            </div>
+          ))}
         </div>
-        {!mobile && (
-          <div className="mt-3 grid grid-cols-3 gap-1">
-            {[
-              { icon: "🏃", label: "Sports" },
-              { icon: "🔄", label: "Recovery" },
-              { icon: "💆", label: "Massage" },
-            ].map((t) => (
-              <div key={t.label} className="rounded-lg bg-white/20 py-1.5 text-center backdrop-blur-sm">
-                <span className="text-sm">{t.icon}</span>
-                <p className="text-[7px] font-medium text-white">{t.label}</p>
-              </div>
-            ))}
+
+        {/* Testimonial strip */}
+        <div className="mt-2.5 flex items-center gap-2 rounded-lg bg-white px-3 py-2 shadow-sm">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[8px] font-bold text-slate-600">
+            {c.brand[0]}
           </div>
-        )}
+          <div>
+            <Stars />
+            <p className="text-[7px] text-slate-500">{c.trust}</p>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center justify-between bg-white px-3 py-1.5">
-        <StarRating />
-        <span className="text-[7px] text-slate-400">Same-week appointments</span>
+
+      {/* Footer */}
+      <div className={cn("px-4 py-1.5 text-center text-[7px]", isLaw ? "bg-slate-900 text-slate-500" : "bg-slate-800 text-slate-400")}>
+        {c.footer}
       </div>
     </div>
   );
 }
 
-const previewComponents: Record<
-  IndustryKey,
-  React.ComponentType<{ mobile?: boolean }>
-> = {
-  dentists: DentalPreview,
-  "law-firms": LawFirmPreview,
-  "real-estate": RealEstatePreview,
-  accounting: AccountingPreview,
-  physiotherapy: PhysiotherapyPreview,
+function MobilePreview({ industry }: { industry: IndustryKey }) {
+  const t = themes[industry];
+  const c = content[industry];
+  const isLaw = industry === "law-firms";
+  const isRealEstate = industry === "real-estate";
+
+  return (
+    <div className={cn("flex h-full flex-col", t.body)}>
+      <MobileNav industry={industry} t={t} />
+
+      {/* Mobile hero — full bleed */}
+      <div className={cn("bg-gradient-to-b px-3 py-3", t.hero)}>
+        <p className="text-[10px] font-bold leading-tight text-white">{c.headline}</p>
+        <p className="mt-1 text-[7px] leading-snug text-white/80">{c.sub}</p>
+        <div className={cn("mt-2 w-full rounded-lg py-1.5 text-center text-[8px] font-bold", isLaw ? "bg-amber-500 text-slate-900" : "bg-white text-slate-800")}>
+          {c.cta}
+        </div>
+      </div>
+
+      {/* Mobile stats — horizontal scroll feel */}
+      <div className="flex divide-x divide-black/5 border-b border-black/5 bg-white">
+        {c.stats.map((s) => (
+          <div key={s.label} className="flex-1 py-1.5 text-center">
+            <p className={cn("text-[9px] font-bold", t.accent)}>{s.val}</p>
+            <p className="text-[6px] text-slate-500">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile services — 2x2 grid */}
+      <div className="flex-1 px-2 py-2">
+        <p className="mb-1.5 text-[7px] font-bold uppercase tracking-wider text-slate-500">
+          {isRealEstate ? "Listings" : "Services"}
+        </p>
+        <div className="grid grid-cols-2 gap-1">
+          {c.services.slice(0, 4).map((svc) => (
+            <div key={svc.label} className="rounded-md border border-black/5 bg-white p-1.5">
+              {isRealEstate ? (
+                <>
+                  <div className="mb-1 h-6 rounded bg-gradient-to-br from-emerald-200 to-teal-300" />
+                  <p className={cn("text-[8px] font-bold", t.accent)}>{svc.label}</p>
+                </>
+              ) : (
+                <>
+                  <span className="text-xs">{svc.icon}</span>
+                  <p className="text-[6px] font-medium text-slate-700">{svc.label}</p>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Sticky CTA bar */}
+      <div className={cn("px-2 py-1.5 text-center text-[6px] text-white", isLaw ? "bg-slate-900" : "bg-slate-800")}>
+        {c.footer}
+      </div>
+    </div>
+  );
+}
+
+const previewMap: Record<IndustryKey, Record<Variant, React.ComponentType<{ industry: IndustryKey }>>> = {
+  dentists: { desktop: DesktopPreview, mobile: MobilePreview },
+  "law-firms": { desktop: DesktopPreview, mobile: MobilePreview },
+  "real-estate": { desktop: DesktopPreview, mobile: MobilePreview },
+  accounting: { desktop: DesktopPreview, mobile: MobilePreview },
+  physiotherapy: { desktop: DesktopPreview, mobile: MobilePreview },
 };
 
 export function WebsitePreviewScene({
   industry,
-  mobile = false,
+  variant = "desktop",
   className,
 }: {
   industry: IndustryKey;
-  mobile?: boolean;
+  variant?: Variant;
   className?: string;
 }) {
-  const Preview = previewComponents[industry];
+  const Preview = previewMap[industry][variant];
 
   return (
     <div className={cn("h-full w-full overflow-hidden", className)}>
-      <Preview mobile={mobile} />
+      <Preview industry={industry} />
     </div>
   );
 }
 
 export function BeforeWebsiteScene({ className }: { className?: string }) {
   return (
-    <div className={cn("flex h-full flex-col bg-slate-300", className)}>
-      <div className="bg-slate-400 px-3 py-2">
-        <p className="text-[10px] font-serif text-slate-600">My Business Website</p>
+    <div className={cn("flex h-full flex-col bg-[#c0c0c0]", className)}>
+      <div className="bg-[#000080] px-3 py-1.5">
+        <p className="text-[10px] font-serif text-white">My Business Website</p>
       </div>
-      <div className="flex-1 p-3">
-        <div className="mb-2 h-8 w-full bg-slate-400/80" />
-        <div className="mb-1 h-2 w-3/4 bg-slate-400/60" />
-        <div className="mb-1 h-2 w-full bg-slate-400/50" />
-        <div className="mb-3 h-2 w-5/6 bg-slate-400/50" />
-        <div className="grid grid-cols-2 gap-2">
-          <div className="h-12 bg-slate-400/40" />
-          <div className="h-12 bg-slate-400/40" />
-        </div>
-        <p className="mt-4 text-center text-[9px] font-medium text-red-600">
-          ⚠ Not Mobile Friendly · Slow · Outdated
+      <div className="flex-1 p-3 font-serif">
+        <table className="w-full border-collapse border border-slate-500 text-[8px] text-slate-700">
+          <tbody>
+            <tr>
+              <td colSpan={2} className="border border-slate-500 bg-[#ffffcc] p-2 text-center font-bold">
+                WELCOME TO OUR WEBSITE
+              </td>
+            </tr>
+            <tr>
+              <td className="w-1/4 border border-slate-500 bg-[#ddd] p-1">Home</td>
+              <td className="border border-slate-500 p-2" rowSpan={3}>
+                <p className="mb-1 font-bold underline">About Us</p>
+                <p>Lorem ipsum dolor sit amet...</p>
+                <p className="mt-2 text-red-600">Best viewed in Internet Explorer</p>
+              </td>
+            </tr>
+            <tr>
+              <td className="border border-slate-500 bg-[#ddd] p-1">About</td>
+            </tr>
+            <tr>
+              <td className="border border-slate-500 bg-[#ddd] p-1">Contact</td>
+            </tr>
+          </tbody>
+        </table>
+        <p className="mt-3 text-center text-[8px] font-bold text-red-600">
+          ⚠ Not Mobile Friendly · Slow · Outdated Design
         </p>
       </div>
     </div>
@@ -343,7 +463,7 @@ export function BeforeWebsiteScene({ className }: { className?: string }) {
 }
 
 export function AfterWebsiteScene({
-  industry,
+  industry = "dentists",
   className,
 }: {
   industry?: IndustryKey;
@@ -351,7 +471,7 @@ export function AfterWebsiteScene({
 }) {
   return (
     <div className={cn("h-full w-full", className)}>
-      <WebsitePreviewScene industry={industry ?? "dentists"} />
+      <WebsitePreviewScene industry={industry} variant="desktop" />
     </div>
   );
 }

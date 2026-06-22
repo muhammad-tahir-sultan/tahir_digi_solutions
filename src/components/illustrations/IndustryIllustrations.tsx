@@ -15,8 +15,24 @@ const industryMap: Record<string, IndustryKey> = {
   "Physiotherapy Clinics": "physiotherapy",
 };
 
+const INDUSTRY_KEYS: IndustryKey[] = [
+  "dentists",
+  "law-firms",
+  "real-estate",
+  "accounting",
+  "physiotherapy",
+];
+
 export function getIndustryKey(name: string): IndustryKey {
   return industryMap[name] ?? "dentists";
+}
+
+/** Accepts display names OR slug keys like "accounting" */
+export function resolveIndustryKey(industry: IndustryKey | string): IndustryKey {
+  if (INDUSTRY_KEYS.includes(industry as IndustryKey)) {
+    return industry as IndustryKey;
+  }
+  return getIndustryKey(industry);
 }
 
 export function IndustryIllustration({

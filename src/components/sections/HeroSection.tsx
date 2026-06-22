@@ -5,8 +5,9 @@ import { ArrowRight, CheckCircle2, TrendingUp, Users, Zap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { BackgroundEffects } from "@/components/visual/BackgroundEffects";
-import { DesktopMockup, MobileMockup } from "@/components/mockups/DeviceMockups";
+import { HeroDeviceShowcase } from "@/components/mockups/DeviceMockups";
 import type { SiteContent } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 const trustIndicators = [
   "Mobile Optimized",
@@ -16,9 +17,9 @@ const trustIndicators = [
 ];
 
 const floatingStats = [
-  { icon: TrendingUp, label: "Avg. Lead Increase", value: "+147%", delay: 0 },
-  { icon: Zap, label: "Page Speed Score", value: "96/100", delay: 0.15 },
-  { icon: Users, label: "Businesses Served", value: "120+", delay: 0.3 },
+  { icon: TrendingUp, label: "Avg. Lead Increase", value: "+147%", position: "left-[0%] top-[8%] sm:-left-[5%]" },
+  { icon: Zap, label: "Page Speed Score", value: "96/100", position: "left-[2%] bottom-[28%] sm:-left-[3%]" },
+  { icon: Users, label: "Businesses Served", value: "120+", position: "right-[0%] bottom-[12%] hidden sm:block" },
 ];
 
 export function HeroSection({ content }: { content: SiteContent["hero"] }) {
@@ -71,52 +72,37 @@ export function HeroSection({ content }: { content: SiteContent["hero"] }) {
             </motion.div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+          <div className="relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="relative"
             >
-              <DesktopMockup industry="dentists" className="relative z-10 mx-auto max-w-md" />
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute -right-2 top-8 z-20 w-28 sm:-right-6 sm:w-32 lg:-right-8"
-              >
-                <MobileMockup industry="dentists" />
-              </motion.div>
+              <HeroDeviceShowcase industry="dentists" />
 
               {floatingStats.map((stat, index) => {
-                const positions = [
-                  "absolute -left-4 top-4 z-30 sm:-left-8",
-                  "absolute -left-2 bottom-16 z-30 sm:-left-6",
-                  "absolute -right-4 bottom-4 z-30 sm:-right-2 lg:right-4",
-                ];
                 const Icon = stat.icon;
-
                 return (
                   <motion.div
                     key={stat.label}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.5 + stat.delay }}
-                    className={positions[index]}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.12 }}
+                    className={cn("absolute z-30", stat.position)}
                   >
                     <motion.div
-                      animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
+                      animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
                       transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut" }}
-                      className="glass-strong rounded-2xl px-4 py-3 shadow-lg"
+                      className="glass-strong rounded-xl px-3 py-2.5 shadow-xl sm:rounded-2xl sm:px-4 sm:py-3"
                     >
                       <div className="flex items-center gap-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-                          <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 sm:h-8 sm:w-8">
+                          <Icon className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" aria-hidden="true" />
                         </div>
                         <div>
-                          <p className="text-lg font-bold text-foreground">{stat.value}</p>
-                          <p className="text-[10px] font-medium uppercase tracking-wide text-muted">
+                          <p className="text-base font-bold text-foreground sm:text-lg">{stat.value}</p>
+                          <p className="text-[9px] font-medium uppercase tracking-wide text-muted sm:text-[10px]">
                             {stat.label}
                           </p>
                         </div>

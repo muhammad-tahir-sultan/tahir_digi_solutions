@@ -71,7 +71,7 @@ export function IndustryShowcaseSection({ industries }: { industries: Industry[]
                     </div>
 
                     <div className="relative -mt-6 mx-4 overflow-hidden rounded-xl border border-border shadow-lg transition-transform duration-300 group-hover:scale-[1.02]">
-                      <BrowserMockup industry={key} />
+                      <BrowserMockup industry={key} size="large" title={`${industry.name} website preview`} />
                     </div>
 
                     <div className="flex flex-1 flex-col p-6 pt-8">
