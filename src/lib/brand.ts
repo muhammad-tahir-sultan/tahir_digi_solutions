@@ -3,6 +3,6 @@ export const BRAND = {
   shortName: "Digi Business",
   domain: "digibusinesssolutions.com",
   url: "https://digibusinesssolutions.com",
-  email: "hello@digibusinesssolutions.com",
+  email: "contact@digibusinesssolutions.com",
   tagline: "Local Business Growth Partner",
 } as const;
