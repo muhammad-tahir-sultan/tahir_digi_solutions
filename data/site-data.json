@@ -551,7 +551,7 @@
       "business": "Bright Smile Dental",
       "industry": "Dentists",
       "rating": 5,
-      "review": "Digital Solutions transformed our online presence. Our new website looks professional and patients constantly mention how easy it is to book appointments online."
+      "review": "Digi Business Solutions transformed our online presence. Our new website looks professional and patients constantly mention how easy it is to book appointments online."
     },
     {
       "id": "test-2",
@@ -559,7 +559,7 @@
       "business": "Rodriguez & Associates Law",
       "industry": "Law Firms",
       "rating": 5,
-      "review": "We needed a website that reflected the quality of our legal work. Digital Solutions delivered a site that generates consistent consultation requests."
+      "review": "We needed a website that reflected the quality of our legal work. Digi Business Solutions delivered a site that generates consistent consultation requests."
     },
     {
       "id": "test-3",
@@ -590,7 +590,7 @@
     {
       "id": "price-1",
       "name": "Starter",
-      "price": "From $2,500",
+      "price": "$500",
       "description": "Essential web presence for small local businesses getting started online.",
       "features": [
         "Up to 5 custom pages",
@@ -606,12 +606,12 @@
         "Mobile optimization",
         "Launch checklist"
       ],
-      "timeline": "3–4 weeks"
+      "timeline": "2–3 weeks"
     },
     {
       "id": "price-2",
       "name": "Professional",
-      "price": "From $5,000",
+      "price": "$800",
       "description": "Complete growth-focused website for businesses ready to generate consistent leads.",
       "features": [
         "Up to 10 custom pages",
@@ -627,13 +627,13 @@
         "Schema markup and SEO setup",
         "Performance optimization"
       ],
-      "timeline": "5–8 weeks",
+      "timeline": "3–4 weeks",
       "featured": true
     },
     {
       "id": "price-3",
       "name": "Premium",
-      "price": "From $10,000",
+      "price": "$2,500",
       "description": "Enterprise-quality website with advanced features for competitive local markets.",
       "features": [
         "Unlimited custom pages",
@@ -662,7 +662,7 @@
     "about": {
       "mission": "To help local businesses grow by building websites that attract customers, generate inquiries, and deliver measurable results.",
       "vision": "To become the most trusted local business growth partner, known for transforming online presence into real business outcomes.",
-      "story": "Digital Solutions was founded with a simple belief: local businesses deserve the same quality of digital experience as enterprise companies. We saw too many dentists, law firms, accountants, and clinics struggling with outdated websites that failed to convert visitors into customers. We built Digital Solutions to change that — partnering with local businesses to create high-converting websites that drive real growth.",
+      "story": "Digi Business Solutions was founded with a simple belief: local businesses deserve the same quality of digital experience as enterprise companies. We saw too many dentists, law firms, accountants, and clinics struggling with outdated websites that failed to convert visitors into customers. We built Digi Business Solutions to change that — partnering with local businesses to create high-converting websites that drive real growth.",
       "whyChooseUs": [
         "We focus exclusively on local service businesses",
         "Every design decision is driven by conversion goals",
@@ -680,49 +680,49 @@
   },
   "seo": {
     "home": {
-      "title": "Digital Solutions | Local Business Growth Partner",
+      "title": "Digi Business Solutions | Local Business Growth Partner",
       "description": "We help local businesses attract more customers with high-converting websites. Serving dentists, law firms, accountants, real estate agencies, and physiotherapy clinics.",
       "ogTitle": "Get More Leads With a High-Converting Website",
       "ogDescription": "Your local business growth partner. We build websites that generate leads, bookings, and customers."
     },
     "about": {
-      "title": "About Us | Digital Solutions",
-      "description": "Learn about Digital Solutions — your local business growth partner focused on transparency, quality, and measurable results."
+      "title": "About Us | Digi Business Solutions",
+      "description": "Learn about Digi Business Solutions — your local business growth partner focused on transparency, quality, and measurable results."
     },
     "services": {
-      "title": "Services | Digital Solutions",
+      "title": "Services | Digi Business Solutions",
       "description": "Website design, redesign, local SEO, landing pages, conversion optimization, and maintenance for local businesses."
     },
     "industries": {
-      "title": "Industries We Serve | Digital Solutions",
+      "title": "Industries We Serve | Digi Business Solutions",
       "description": "Specialized website solutions for dentists, law firms, real estate agencies, accounting firms, and physiotherapy clinics."
     },
     "portfolio": {
-      "title": "Portfolio | Digital Solutions",
+      "title": "Portfolio | Digi Business Solutions",
       "description": "Explore our demo projects for local businesses across dental, legal, real estate, accounting, and physiotherapy industries."
     },
     "case-studies": {
-      "title": "Case Studies | Digital Solutions",
+      "title": "Case Studies | Digi Business Solutions",
       "description": "See how we approach website redesign and growth projects for local businesses. Demo case studies with real strategies."
     },
     "process": {
-      "title": "Our Process | Digital Solutions",
+      "title": "Our Process | Digi Business Solutions",
       "description": "Our proven 6-step process from discovery to launch and ongoing support for local business websites."
     },
     "pricing": {
-      "title": "Pricing | Digital Solutions",
+      "title": "Pricing | Digi Business Solutions",
       "description": "Transparent pricing packages for local business websites. Starter, Professional, and Premium options available."
     },
     "testimonials": {
-      "title": "Testimonials | Digital Solutions",
-      "description": "Read what local business owners say about working with Digital Solutions."
+      "title": "Testimonials | Digi Business Solutions",
+      "description": "Read what local business owners say about working with Digi Business Solutions."
     },
     "contact": {
-      "title": "Contact Us | Digital Solutions",
-      "description": "Get in touch with Digital Solutions. Book a free consultation or send us a message."
+      "title": "Contact Us | Digi Business Solutions",
+      "description": "Get in touch with Digi Business Solutions. Book a free consultation or send us a message."
     },
     "free-audit": {
-      "title": "Free Website Audit | Digital Solutions",
+      "title": "Free Website Audit | Digi Business Solutions",
       "description": "Get a free website audit covering mobile experience, speed, SEO, and conversion optimization."
     }
   },

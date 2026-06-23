@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPortfolioBySlug, getSiteData } from "@/lib/data";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, SITE_NAME } from "@/lib/seo";
 import { PortfolioDetailShowcase } from "@/components/portfolio/PortfolioDetailShowcase";
 
 interface Props {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata(
     "portfolio",
     {
-      title: `${item.title} | Digital Solutions Portfolio`,
+      title: `${item.title} | ${SITE_NAME} Portfolio`,
       description: item.overview,
     },
     `/portfolio/${slug}`

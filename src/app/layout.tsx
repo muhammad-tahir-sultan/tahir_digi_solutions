@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { AdminFooterGuard } from "@/components/layout/AdminFooterGuard";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND } from "@/lib/brand";
 import { getSiteData } from "@/lib/data";
 import { buildMetadata, organizationJsonLd, localBusinessJsonLd } from "@/lib/seo";
 import "./globals.css";
@@ -21,7 +22,16 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getSiteData();
-  return buildMetadata("home", data.seo.home, "/");
+  const pageMeta = buildMetadata("home", data.seo.home, "/");
+  return {
+    ...pageMeta,
+    metadataBase: new URL(BRAND.url),
+    applicationName: BRAND.name,
+    icons: {
+      icon: "/brand-logo.svg",
+      apple: "/brand-logo.svg",
+    },
+  };
 }
 
 export default function RootLayout({

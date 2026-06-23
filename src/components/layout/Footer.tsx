@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Container } from "@/components/ui/Container";
+import { BRAND } from "@/lib/brand";
 
 const footerLinks = {
   company: [
@@ -26,15 +28,7 @@ export function Footer() {
       <Container className="py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-white">
-                DS
-              </div>
-              <div>
-                <p className="font-bold text-foreground">Digital Solutions</p>
-                <p className="text-xs text-muted">Local Business Growth Partner</p>
-              </div>
-            </div>
+            <BrandLogo variant="stacked" markSize={40} showTagline />
             <p className="mt-4 text-sm text-muted">
               We help local businesses attract more customers, generate inquiries, and improve
               their online presence through high-converting websites.
@@ -83,11 +77,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-sm text-muted">
-            &copy; {new Date().getFullYear()} Digital Solutions. All rights reserved.
+            &copy; {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
-          <p className="text-sm text-muted">
-            hello@digitalsolutions.com
-          </p>
+          <p className="text-sm text-muted">{BRAND.email}</p>
         </div>
       </Container>
     </footer>

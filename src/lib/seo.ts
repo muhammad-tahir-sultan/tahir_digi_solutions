@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import type { SeoPageMeta } from "./types";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://digitalsolutions.com";
-const SITE_NAME = "Digital Solutions";
+import { BRAND } from "./brand";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || BRAND.url;
+const SITE_NAME = BRAND.name;
 
 export function buildMetadata(
   pageKey: string,
@@ -48,7 +50,7 @@ export function organizationJsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "hello@digitalsolutions.com",
+      email: BRAND.email,
     },
     areaServed: {
       "@type": "Country",

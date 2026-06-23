@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BRAND } from "@/lib/brand";
 import { getSiteData } from "@/lib/data";
 import { buildMetadata } from "@/lib/seo";
 import { PageHero, FinalCTA } from "@/components/sections/ContentSections";
@@ -17,7 +18,7 @@ export default async function TestimonialsPage() {
       <PageHero
         badge="Testimonials"
         title="Trusted by Local Business Owners"
-        description="See what our partners say about working with Digital Solutions."
+        description={`See what our partners say about working with ${BRAND.name}.`}
       />
       <PremiumTestimonialsSection
         testimonials={data.testimonials}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCaseStudyBySlug, getSiteData } from "@/lib/data";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, SITE_NAME } from "@/lib/seo";
 import { CaseStudyDetailShowcase } from "@/components/sections/premium/CaseStudyDetailShowcase";
 
 interface Props {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata(
     "case-studies",
     {
-      title: `${study.title} | Digital Solutions Case Study`,
+      title: `${study.title} | ${SITE_NAME} Case Study`,
       description: study.businessOverview,
     },
     `/case-studies/${slug}`

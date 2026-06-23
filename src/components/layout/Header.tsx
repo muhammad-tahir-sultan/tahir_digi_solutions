@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -30,11 +31,8 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl">
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-white">
-              DS
-            </div>
-            <p className="text-sm font-semibold tracking-tight text-foreground">Digital Solutions</p>
+          <Link href="/" className="shrink-0">
+            <BrandLogo markSize={36} />
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">

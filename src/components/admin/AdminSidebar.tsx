@@ -17,7 +17,9 @@ import {
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Button } from "@/components/ui/Button";
+import { BRAND } from "@/lib/brand";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -47,12 +49,10 @@ export function AdminSidebar() {
     <aside className="flex w-64 shrink-0 flex-col border-r border-border bg-card">
       <div className="border-b border-border p-6">
         <Link href="/admin" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-xs font-bold text-white">
-            DS
-          </div>
+          <BrandLogo variant="mark" markSize={32} />
           <div>
             <p className="text-sm font-bold text-foreground">Admin Dashboard</p>
-            <p className="text-xs text-muted">Digital Solutions</p>
+            <p className="text-xs text-muted">{BRAND.shortName}</p>
           </div>
         </Link>
       </div>

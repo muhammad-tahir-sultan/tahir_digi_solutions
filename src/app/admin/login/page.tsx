@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -45,9 +46,7 @@ export default function AdminLoginPage() {
       <Container className="max-w-md">
         <Card>
           <div className="text-center">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-lg font-bold text-white">
-              DS
-            </div>
+            <BrandLogo variant="mark" markSize={48} className="mx-auto" />
             <h1 className="mt-4 text-2xl font-bold text-foreground">Admin Login</h1>
             <p className="mt-2 text-sm text-muted">Sign in to manage your website content</p>
           </div>
