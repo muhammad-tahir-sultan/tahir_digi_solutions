@@ -18,6 +18,9 @@
 /flow_step_UI/Screen 5/**
 /flow_step_UI/Screen 6/**
 
+# legacy static sales kit (migrated to /sales-kit in Next.js)
+/pushpa-sales-kit
+
 # testing
 /coverage
 
@@ -39,7 +42,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
 
 # vercel
 .vercel
@@ -47,3 +49,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+config.bat
